@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 interface NavItem {
-  name: string;
-  href: string;
+    name: string;
+    href: string;
 }
 
 const Navbar: React.FC = () => {
@@ -14,6 +14,10 @@ const Navbar: React.FC = () => {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const closeMenu = () => {
+        setIsOpen(false);
     };
 
     const navItems: NavItem[] = [
@@ -109,6 +113,7 @@ const Navbar: React.FC = () => {
                                 key={item.name}
                                 href={item.href}
                                 className={getLinkClassName(pathname === item.href, true)}
+                                onClick={closeMenu}
                             >
                                 {item.name}
                             </Link>

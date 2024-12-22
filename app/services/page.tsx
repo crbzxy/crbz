@@ -1,78 +1,84 @@
 import React from 'react';
-import Link from 'next/link';
 
 export default function ServicesPage() {
   const services = [
     {
-      title: "Live / Visuals",
+      title: "UX Design & Research",
       items: [
-        "Live Visuals & VJ with TouchDesigner",
-        "Audio-Reactive",
-        "Live 3D Cameras",
-        "Live Footage",
-        "Pre-made / Looped Visuals",
-        "Projection Mapped Visuals",
-        "Artworks"
+        "User Experience Research",
+        "User Interface Design",
+        "Prototyping and Wireframing",
+        "Usability Testing",
+        "Design Systems Creation",
+        "Mobile and Web UI/UX Optimization"
       ],
-      tags: ["Performance", "Visual", "Real-time"]
+      tags: ["UX Design", "Research", "Usability"]
     },
     {
-      title: "Installations",
+      title: "Front-End Development",
       items: [
-        "Interactive Projections",
-        "Motion Reactive",
-        "Audio Reactive",
-        "Live 3D Cameras or Footage",
-        "Projection Mapped Installations"
+        "React.js and React Native Development",
+        "Responsive Web Design",
+        "Performance Optimization",
+        "Integration with APIs",
+        "Cross-Browser Compatibility",
+        "Component-Based Architecture"
       ],
-      tags: ["Interactive", "Installation", "Spatial"]
+      tags: ["Front-End", "React", "Development"]
     },
     {
-      title: "Teaching",
+      title: "Creative Digital Projects",
       items: [
-        "1-on-1 Private Tutoring for TouchDesigner",
-        "TouchDesigner Workshops (Coming Soon)"
+        "Interactive Digital Art",
+        "Motion Graphics with Code",
+        "3D Web Experiences",
+        "Generative Design Systems",
+        "Custom Animations",
+        "Projection Mapping"
       ],
-      tags: ["Education", "TouchDesigner"]
+      tags: ["Digital Art", "Creative", "Interactive"]
     },
     {
-      title: "Other Services",
+      title: "Workshops & Education",
       items: [
-        "Please contact for more information"
+        "1-on-1 UX Design Coaching",
+        "Workshops on React and JavaScript",
+        "Digital Art and Creative Coding Training",
+        "Custom Training Programs for Teams"
       ],
-      tags: ["Custom", "Consulting"]
+      tags: ["Education", "Coaching", "Training"]
     }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-10 py-16">
         {/* Header */}
-        <header className="mb-12 bg-white rounded-lg shadow-sm p-8">
-          <h1 className="text-4xl font-bold text-gray-900">Services</h1>
-          <p className="mt-4 text-gray-600">
-            Exploring the intersection of technology, art, and interactive experiences
+        <header className="mb-14 bg-white text-gray-900 rounded-lg  p-10">
+          <h1 className="text-4xl font-extrabold">My Services</h1>
+          <p className="mt-4 text-lg">
+            Delivering tailored solutions with expertise in design, development, and creativity.
           </p>
         </header>
 
         {/* Services List */}
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {services.map((service) => (
-            <article 
-              key={service.title} 
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+            <article
+              key={service.title}
+              className="bg-white rounded-lg  hover: transition-shadow duration-300"
             >
-              <div className="p-8">
+              <div className="p-6">
                 {/* Service Title */}
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
                   {service.title}
                 </h2>
 
                 {/* Service Items */}
-                <ul className="space-y-4 text-gray-700 mb-6">
+                <ul className="space-y-3 text-gray-700 mb-4">
                   {service.items.map((item, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="mr-3 text-gray-400">•</span>
+                      <span className="mr-2 text-gray-500">✔</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -95,27 +101,27 @@ export default function ServicesPage() {
         </div>
 
         {/* Contact Section */}
-        <footer className="mt-12 bg-white rounded-lg shadow-sm p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-          <div className="space-y-4 text-gray-700">
+        <footer className="mt-16 bg-white text-gray-900 rounded-lg  p-10">
+          <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+          <div className="space-y-3 text-lg">
             <p className="flex items-center">
               <span className="mr-3">📧</span>
-              <a 
-                href="mailto:nicholaspjm@gmail.com" 
-                className="text-gray-900 hover:text-gray-600 transition-colors"
+              <a
+                href="mailto:carlosboyzo@gmail.com"
+                className="underline hover:text-blue-500 transition-colors"
               >
-                nicholaspjm@gmail.com
+                carlosboyzo@gmail.com
               </a>
             </p>
             <p className="flex items-center">
-              <span className="mr-3">📱</span>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <span className="mr-3">🔗</span>
+              <a
+                href="https://www.linkedin.com/in/carlosboyzo/"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-900 hover:text-gray-600 transition-colors"
+                className="underline hover:text-blue-500 transition-colors"
               >
-                Instagram
+                LinkedIn
               </a>
             </p>
           </div>
