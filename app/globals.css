@@ -19,3 +19,75 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.blog-content  {
+  @apply text-gray-900;
+}
+
+
+
+.blog-content blockquote {
+  @apply border-l-4 border-blue-500 bg-gray-50 p-6 my-8 rounded-lg;
+}
+
+.blog-content blockquote p {
+  @apply m-0 italic text-gray-600;
+}
+
+.blog-content img {
+  @apply rounded-lg shadow-md;
+}
+
+.blog-content h2 {
+  @apply text-3xl font-bold mt-12 mb-6;
+}
+
+.blog-content h3 {
+  @apply text-2xl font-semibold mt-8 mb-4;
+}
+
+.blog-content pre {
+  @apply bg-gray-50 p-4 rounded-lg overflow-x-auto;
+}
+
+.blog-content code {
+  @apply text-sm bg-gray-50 px-1 py-0.5 rounded;
+}
+
+.blog-content ul {
+  @apply list-disc pl-6 my-6;
+}
+
+.blog-content ol {
+  @apply list-decimal pl-6 my-6;
+}
+
+.blog-content li {
+  @apply mb-2;
+}
+
+.blog-content hr {
+  @apply my-12 border-gray-200;
+}
+
+.blog-content .footnotes {
+  @apply mt-16 pt-8 border-t border-gray-200;
+}
+
+/* Estilos para diagramas mermaid */
+.blog-content .mermaid {
+  @apply my-8 p-4 bg-white rounded-lg shadow-sm;
+}
+
+/* Estilos para tablas */
+.blog-content table {
+  @apply w-full my-8 border-collapse;
+}
+
+.blog-content th {
+  @apply bg-gray-50 p-3 text-left font-semibold border border-gray-200;
+}
+
+.blog-content td {
+  @apply p-3 border border-gray-200;
+}

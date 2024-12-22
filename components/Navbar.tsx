@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
     const navItems: NavItem[] = [
         { name: 'Services', href: '/services' },
         { name: 'Manifesto', href: '/manifiesto' },
-        { name: 'Blog', href: '/blog' },
+        // { name: 'Blog', href: '/blog' },
     ];
 
     const getLinkClassName = (isActive: boolean, isMobile: boolean = false) => {
