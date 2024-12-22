@@ -3,7 +3,7 @@ import home1 from "../public/images/home/hero-image.png";
 export default function Home() {
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-16 font-roboto text-gray-800 bg-gray-50 max-w-[900]">
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-16 font-roboto text-gray-800 max-w-[900]">
       <main className="max-w-4xl flex flex-col sm:flex-row gap-8 items-center sm:items-start">
         <Image
           src={home1} // Cambia por la ruta de tu imagen

@@ -24,7 +24,7 @@ export default function Manifesto() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <header className="mb-12 bg-white rounded-lg shadow-sm p-8">
@@ -61,7 +61,7 @@ export default function Manifesto() {
             </div>
 
             {/* Conclusion */}
-            <blockquote className="mt-12 p-6 bg-gray-50 border-l-4 border-gray-900 text-gray-700 italic">
+            <blockquote className="mt-12 p-6  border-l-4 border-gray-900 text-gray-700 italic">
               {sections[0].conclusion}
             </blockquote>
 
