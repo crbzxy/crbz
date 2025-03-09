@@ -2,9 +2,12 @@ import { getPostBySlug } from '@/app/blog/lib/posts';
 import { notFound } from 'next/navigation';
 import { Roboto_Condensed } from 'next/font/google';
 
-interface PostPageProps {
-  params: { slug: string };
-}
+// Definición correcta de los parámetros para la página en Next.js App Router
+type PostPageProps = {
+  params: {
+    slug: string;
+  };
+};
 
 // Configuración de la fuente Roboto Condensed
 const robotoCondensed = Roboto_Condensed({
@@ -16,7 +19,11 @@ const robotoCondensed = Roboto_Condensed({
 
 export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostBySlug(params.slug);
-  if (!post) return notFound();
+  
+  // Si no se encuentra el post, redirige a 404
+  if (!post) {
+    return notFound();
+  }
 
   return (
     <div className={`min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 ${robotoCondensed.className} mt-16`}>
