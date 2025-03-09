@@ -2,6 +2,10 @@ import { getPostBySlug } from '@/app/blog/lib/posts';
 import { notFound } from 'next/navigation';
 import { Roboto_Condensed } from 'next/font/google';
 
+interface PostPageProps {
+  params: { slug: string };
+}
+
 // Configuración de la fuente Roboto Condensed
 const robotoCondensed = Roboto_Condensed({
   subsets: ['latin'],
@@ -10,15 +14,12 @@ const robotoCondensed = Roboto_Condensed({
   variable: '--font-roboto-condensed',
 });
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-
+export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
 
-  console.log("Contenido HTML del post:", post.contentHtml); // Para depuración
-
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 ${robotoCondensed.className} mt`}>
+    <div className={`min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 ${robotoCondensed.className} mt-16`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <article className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
           <header className="mb-6">
