@@ -11,16 +11,6 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
-  type Post = {
-    id: string;
-    title: string;
-    excerpt: string;
-    date: string;
-    readTime: string;
-    tags: string[];
-    image?: string;
-    contentHtml: string;
-  };
 
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
