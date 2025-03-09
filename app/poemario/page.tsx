@@ -61,8 +61,6 @@ type ProcessedLine = WordVersions[];
 export default function PoemaDinamico() {
   const totalLineas = poemaData[0].lineas.length;
   const poemRef = useRef<HTMLDivElement>(null);
-  const [showAllVersions, setShowAllVersions] = useState(false);
-  const [activeVersion, setActiveVersion] = useState(0);
   const [animating, setAnimating] = useState(true);
 
   // Estado para manejar la versión actual de cada palabra
@@ -164,7 +162,6 @@ export default function PoemaDinamico() {
       <div className="max-w-5xl w-full mx-auto">
 
         {/* Controls */}
-
 
         {/* Poem */}
         <div
