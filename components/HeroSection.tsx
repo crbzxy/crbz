@@ -115,6 +115,7 @@ export default function HeroSection() {
                                 className="w-full object-fill"
                                 priority
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-600 rounded-full blur-2xl opacity-20 dark:opacity-30 z-0"></div>
                         <div className="absolute -top-4 -right-4 w-32 h-32 bg-purple-600 rounded-full blur-2xl opacity-20 dark:opacity-30 z-0"></div>

@@ -64,8 +64,8 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
-            Servicios
+        <h1 className="inline-block mb-4 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full text-sm font-medium tracking-wide">
+            Sercivios
           </h1>
           <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-300 tracking-wide">
             Soluciones personalizadas con experiencia en diseño, desarrollo y creatividad.
