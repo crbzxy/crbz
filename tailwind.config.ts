@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography"; 
 
 export default {
   content: [
@@ -8,11 +9,25 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        sans: ["var(--font-roboto-condensed)", "sans-serif"],
+      },
+      typography: {
+        invert: {
+          css: {
+            color: "#fff",
+            a: { color: "#3b82f6" },
+            strong: { color: "#fff" },
+            blockquote: {
+              color: "#fff",
+              backgroundColor: "#1e293b",
+              borderLeftColor: "#3b82f6",
+            },
+            hr: { borderColor: "#e5e7eb" },
+          },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 } satisfies Config;

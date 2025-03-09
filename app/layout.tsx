@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto_Condensed, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Configuración de Roboto Condensed para texto normal
+const robotoCondensed = Roboto_Condensed({
+  variable: "--font-roboto-condensed",
+  weight: ["300", "400", "700"],
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Configuración de Roboto Mono para código o elementos que requieran monospace
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,11 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="es">
+      <body className={`${robotoCondensed.variable} ${robotoMono.variable} font-roboto-condensed antialiased`}>
         <Navbar />
+        <GalaxyBackground />
         {children}
-       <Footer />
+        
+        <Footer />
       </body>
     </html>
   );

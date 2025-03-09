@@ -24,57 +24,61 @@ export default function Manifesto() {
   ];
 
   return (
-    <div className="min-h-screen ">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 font-roboto-condensed pt-24">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
-        <header className="mb-12 bg-white rounded-lg shadow-sm p-8">
-          <h1 className="text-4xl  text-gray-900 font-extrabold">Manifesto</h1>
+        <div className="text-center mb-2">
           
-        </header>
+          <h1 className="inline-block mb-4 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full text-sm font-medium tracking-wide">
+            MANIFIESTO
+          </h1>
+        
+        </div>
 
         {/* Main Content */}
-        <article className="bg-white rounded-lg shadow-sm">
-          <div className="p-8">
+        <article className="bg-white/80 dark:bg-gray-800/50 rounded-xl shadow-md overflow-hidden">
+          <div className="p-6 sm:p-10">
             {/* Article Header */}
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
-              <time>December 21, 2024</time>
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-100 dark:border-gray-700">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight mb-2">
+                  {sections[0].title}
+                </h2>
+                <p className="text-xl text-blue-600 dark:text-blue-400 tracking-wide">
+                  {sections[0].excerpt}
+                </p>
+              </div>
+              <div className="text-right">
+                <time className="text-sm text-gray-500 dark:text-gray-400 tracking-wide">
+                  December 21, 2024
+                </time>
+              </div>
             </div>
 
-            {/* Title */}
-            <h2 className="text-2xl  text-gray-900 mb-4">
-              {sections[0].title}
-            </h2>
-            <p className="text-gray-600 mb-8 text-lg">
-              {sections[0].excerpt}
-            </p>
-
-            {/* Content */}
-            <div className="space-y-6 text-gray-700">
-              {sections[0].content.map((paragraph, index) => (
-                <div key={index} className="flex gap-4">
-                  <span className="flex-shrink-0 text-gray-400 font-medium">
-                    {(index + 1).toString().padStart(2, '0')}
-                  </span>
-                  <p className="leading-relaxed">{paragraph}</p>
-                </div>
-              ))}
+            {/* Content with visual separator */}
+            <div className="relative">
+              <div className="absolute left-[24px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500/80 via-indigo-500/80 to-purple-500/80 dark:from-blue-500/50 dark:via-indigo-500/50 dark:to-purple-500/50"></div>
+              
+              <div className="space-y-8 text-gray-700 dark:text-gray-300">
+                {sections[0].content.map((paragraph, index) => (
+                  <div key={index} className="flex gap-8 group">
+                    <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 font-bold text-sm border border-blue-200 dark:border-blue-800 shadow-sm group-hover:scale-110 transition-transform">
+                        {(index + 1).toString().padStart(2, '0')}
+                      </span>
+                    </div>
+                    <p className="leading-relaxed tracking-wide">{paragraph}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Conclusion */}
-            <blockquote className="mt-12 p-6  border-l-4 border-gray-900 text-gray-700 italic">
-              {sections[0].conclusion}
-            </blockquote>
-
-            {/* Tags */}
-            <div className="mt-8 flex flex-wrap gap-2">
-              {['Philosophy', 'Technology', 'Innovation', 'Ethics'].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="mt-16 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/10 dark:to-indigo-900/10 rounded-xl border-l-4 border-blue-500 dark:border-blue-600">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">Conclusión</h3>
+              <p className="text-gray-700 dark:text-gray-300 italic tracking-wide leading-relaxed">
+                {sections[0].conclusion}
+              </p>
             </div>
           </div>
         </article>
