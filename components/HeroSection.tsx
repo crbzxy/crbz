@@ -54,13 +54,13 @@ const AnimatedStat = ({ value, label, delay = 0 }: { value: string; label: strin
   }, [delay]);
 
   return (
-    <div className={`text-center transform transition-all duration-700 delay-${delay} ${
+    <div className={`text-center transform transition-all duration-700 ${
       isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-    }`} style={{ zIndex: 0 }}>
-      <div className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1">
+    }`}>
+      <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1">
         {value}
       </div>
-      <div className="text-xs text-gray-600 dark:text-gray-400 tracking-wide">
+      <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 tracking-wide">
         {label}
       </div>
     </div>
@@ -90,30 +90,29 @@ const SkillCard = ({
 
   return (
     <div 
-      className={`bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700
+      className={`bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-700
         transform transition-all duration-500 hover:shadow-md ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
       `}
-      style={{ zIndex: 0 }}
     >
-      <div className="flex items-center mb-3">
-        <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mr-3">
+      <div className="flex items-center mb-2 sm:mb-3">
+        <div className="p-1.5 sm:p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mr-2 sm:mr-3">
           {icon}
         </div>
-        <h3 className="font-semibold text-gray-900 dark:text-white text-base tracking-wide">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base tracking-wide">
           {title}
         </h3>
       </div>
       
-      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-3 tracking-wide text-sm">
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-2 sm:mb-3 tracking-wide text-xs sm:text-sm">
         {description}
       </p>
       
       {technologies.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1 sm:gap-1.5">
           {technologies.map((tech, index) => (
             <span 
               key={index}
-              className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 
+              className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 
                 text-xs font-medium rounded tracking-wide"
             >
               {tech}
@@ -127,102 +126,137 @@ const SkillCard = ({
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
     setIsLoaded(true);
-    
-    // Animación secuencial de secciones
-    const interval = setInterval(() => {
-      setActiveSection(prev => (prev + 1) % 3);
-    }, 4000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const currentYear = new Date().getFullYear();
-  const experience = currentYear - 2008; // Asumiendo que empezó en 2008
+  const experience = currentYear - 2008;
 
   return (
-    <section className={`h-[100%] min-h-[100vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`} style={{ zIndex: 0 }}>
+    <section className={`h-[100%] min-h-[100vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`}>
       
-      {/* Elementos decorativos minimalistas */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+      {/* Elementos decorativos minimalistas - solo en desktop */}
+      <div className="hidden lg:block absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-gray-300 dark:bg-gray-700 rounded-full opacity-40" />
         <div className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full opacity-30" />
       </div>
 
-      <main className="container mx-auto px-4 py-8 relative z-10 h-full flex items-center">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 relative h-full flex items-center">
+        <div className="w-full max-w-7xl mx-auto">
           
-          {/* Columna de contenido */}
-          <div className="lg:w-3/5 space-y-8" style={{ zIndex: 0 }}>
+          {/* Layout móvil: Todo en una columna */}
+          <div className="lg:hidden space-y-6 sm:space-y-8">
             
-            {/* Badge minimalista */}
-            <div className={`inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 
-              text-gray-600 dark:text-gray-400 rounded-full text-sm font-medium tracking-widest uppercase 
+            {/* Badge */}
+            <div className={`inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 dark:bg-gray-800 
+              text-gray-600 dark:text-gray-400 rounded-full text-xs sm:text-sm font-medium tracking-widest uppercase 
               border border-gray-200 dark:border-gray-700 transform transition-all duration-1000 ${
                 isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-              }`} style={{ zIndex: 0 }}>
-              <span className="w-2 h-2 bg-gray-400 rounded-full mr-3" />
+              }`}>
+              <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-gray-400 rounded-full mr-2 sm:mr-3" />
               Developer • Designer • Creative
             </div>
 
-            {/* Título principal */}
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white 
-              leading-none tracking-tight transform transition-all duration-1000 delay-200 ${
+            {/* Título */}
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white 
+              leading-tight tracking-tight transform transition-all duration-1000 delay-200 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`} style={{ zIndex: 0 }}>
+              }`}>
               <span className="block">Creator &</span>
               <span className="block text-gray-700 dark:text-gray-300">Artist</span>
             </h1>
 
-            {/* Descripción principal */}
-            <div className={`space-y-3 transform transition-all duration-1000 delay-400 ${
+            {/* Descripción */}
+            <div className={`transform transition-all duration-1000 delay-400 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-            }`} style={{ zIndex: 0 }}>
+            }`}>
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700" />
-                <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed pl-6 tracking-wide">
-                  Con más de <span className="font-bold text-gray-900 dark:text-white text-xl md:text-2xl">{experience} años de trayectoria</span>,
+                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed pl-4 sm:pl-6 tracking-wide">
+                  Con más de <span className="font-bold text-gray-900 dark:text-white text-lg sm:text-xl">{experience} años de trayectoria</span>,
                   transformo conceptos en experiencias digitales que <em className="text-gray-800 dark:text-gray-200 not-italic font-medium">capturan la atención</em> y
                   <em className="text-gray-800 dark:text-gray-200 not-italic font-medium"> generan resultados</em>.
                 </p>
               </div>
+            </div>
 
-              {/* Estadísticas */}
-              <div className="grid grid-cols-3 gap-4 py-3">
-                <AnimatedStat value="+16" label="Años Experiencia" delay={600} />
-                <AnimatedStat value="100+" label="Proyectos" delay={800} />
-                <AnimatedStat value="50+" label="Clientes" delay={1000} />
+            {/* Estadísticas */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 py-2 sm:py-3">
+              <AnimatedStat value="+16" label="Años Experiencia" delay={600} />
+              <AnimatedStat value="100+" label="Proyectos" delay={800} />
+              <AnimatedStat value="50+" label="Clientes" delay={1000} />
+            </div>
+
+            {/* Imagen en móvil */}
+            <div className={`relative max-w-sm mx-auto transform transition-all duration-1000 delay-1000 ${
+              isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
+            }`}>
+              <div className="relative rounded-lg overflow-hidden shadow-lg max-h-[40vh] sm:max-h-[45vh]">
+                <Image
+                  src="/images/home/hero-image.png"
+                  alt="Carlos Armando Boyzo - UX Designer & Frontend Developer"
+                  width={400}
+                  height={500}
+                  className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  priority
+                />
               </div>
             </div>
 
-            {/* Tarjetas de habilidades */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ zIndex: 0 }}>
+            {/* Botones CTA en móvil - Posición prominente */}
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 transform transition-all duration-1000 delay-1200 ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}>
+              <Link
+                href="/portfolio"
+                className="group inline-flex items-center justify-center px-6 py-3 bg-gray-900 dark:bg-white 
+                  hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold rounded-lg 
+                  transition-all duration-300 tracking-wide text-sm sm:text-base"
+              >
+                VER PORTAFOLIO
+                <ExternalLinkIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+
+              <a
+                href="mailto:carlos.boor@gmail.com"
+                className="group inline-flex items-center justify-center px-6 py-3 bg-white dark:bg-gray-800 
+                  border border-gray-300 dark:border-gray-600 hover:border-gray-400 
+                  dark:hover:border-gray-500 text-gray-700 dark:text-gray-200 hover:text-gray-900 
+                  dark:hover:text-white font-semibold rounded-lg transition-all duration-300 
+                  tracking-wide text-sm sm:text-base"
+              >
+                <EmailIcon className="w-4 h-4 mr-2" />
+                CONTACTARME
+              </a>
+            </div>
+
+            {/* Cards en móvil */}
+            <div className="space-y-3 sm:space-y-4">
               <SkillCard
-                icon={<DesignIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
+                icon={<DesignIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400" />}
                 title="Diseño UX Estratégico"
                 description="Como Diseñador SR UX en Truper, combino investigación de usuarios con diseño visual para crear soluciones que impulsan los resultados de negocio."
                 technologies={["Figma", "Design Systems", "User Research"]}
-                delay={1200}
+                delay={1400}
               />
               
               <SkillCard
-                icon={<CodeIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
+                icon={<CodeIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400" />}
                 title="Desarrollo Frontend"
                 description="Implemento mis diseños con JavaScript y React.js, garantizando que la visión creativa se traduzca en código de alta calidad y rendimiento."
                 technologies={["React.js", "Next.js", "TypeScript"]}
-                delay={1400}
+                delay={1600}
               />
             </div>
 
-            {/* Filosofía de trabajo */}
-            <div className={`bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700
-              transform transition-all duration-1000 delay-1600 ${
+            {/* Filosofía */}
+            <div className={`bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-700
+              transform transition-all duration-1000 delay-1800 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`} style={{ zIndex: 0 }}>
-              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
+              }`}>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
                 Mi enfoque trasciende el diseño convencional, situándome en la valiosa intersección entre
                 <span className="font-semibold mx-1 text-gray-900 dark:text-white"> diseño</span>,
                 <span className="font-semibold mx-1 text-gray-900 dark:text-white"> tecnología</span> y
@@ -231,63 +265,143 @@ export default function HeroSection() {
                 creando interfaces intuitivas que <span className="font-semibold text-gray-900 dark:text-white">generan valor medible</span>.
               </p>
             </div>
-
-            {/* Botones CTA */}
-            <div className={`flex flex-wrap gap-3 transform transition-all duration-1000 delay-1800 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-            }`} style={{ zIndex: 0 }}>
-              <Link
-                href="/portfolio"
-                className="group inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white 
-                  hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold rounded-lg 
-                  transition-all duration-300 tracking-wide text-sm"
-              >
-                VER PORTAFOLIO
-                <ExternalLinkIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-
-              <a
-                href="mailto:carlos.boor@gmail.com"
-                className="group inline-flex items-center px-6 py-3 bg-white dark:bg-gray-800 
-                  border border-gray-300 dark:border-gray-600 hover:border-gray-400 
-                  dark:hover:border-gray-500 text-gray-700 dark:text-gray-200 hover:text-gray-900 
-                  dark:hover:text-white font-semibold rounded-lg transition-all duration-300 
-                  tracking-wide text-sm"
-              >
-                <EmailIcon className="w-4 h-4 mr-2" />
-                CONTACTARME
-              </a>
-            </div>
           </div>
 
-          {/* Columna de imagen */}
-          <div className="lg:w-2/5 relative h-full flex items-center justify-center" style={{ zIndex: 0 }}>
-            <div className={`relative z-10 transform transition-all duration-1000 delay-1000 ${
-              isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
-            }`}>
+          {/* Layout desktop: Dos columnas */}
+          <div className="hidden lg:flex lg:items-center lg:gap-16">
+            
+            {/* Columna de contenido */}
+            <div className="lg:w-3/5 space-y-8">
               
-              {/* Container de la imagen */}
-              <div className="relative">
-                {/* Imagen principal */}
-                <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 max-h-[50vh]">
-                  <Image
-                    src="/images/home/hero-image.png"
-                    alt="Carlos Armando Boyzo - UX Designer & Frontend Developer"
-                    width={400}
-                    height={500}
-                    className="w-full h-auto object-cover max-h-[50vh] grayscale hover:grayscale-0 transition-all duration-500"
-                    priority
-                  />
+              {/* Badge */}
+              <div className={`inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 
+                text-gray-600 dark:text-gray-400 rounded-full text-sm font-medium tracking-widest uppercase 
+                border border-gray-200 dark:border-gray-700 transform transition-all duration-1000 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+                }`}>
+                <span className="w-2 h-2 bg-gray-400 rounded-full mr-3" />
+                Developer • Designer • Creative
+              </div>
+
+              {/* Título */}
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white 
+                leading-none tracking-tight transform transition-all duration-1000 delay-200 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}>
+                <span className="block">Creator &</span>
+                <span className="block text-gray-700 dark:text-gray-300">Artist</span>
+              </h1>
+
+              {/* Descripción */}
+              <div className={`space-y-3 transform transition-all duration-1000 delay-400 ${
+                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}>
+                <div className="relative">
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700" />
+                  <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed pl-6 tracking-wide">
+                    Con más de <span className="font-bold text-gray-900 dark:text-white text-xl md:text-2xl">{experience} años de trayectoria</span>,
+                    transformo conceptos en experiencias digitales que <em className="text-gray-800 dark:text-gray-200 not-italic font-medium">capturan la atención</em> y
+                    <em className="text-gray-800 dark:text-gray-200 not-italic font-medium"> generan resultados</em>.
+                  </p>
                 </div>
 
-                {/* Indicadores minimalistas */}
-                <div className="absolute -right-2 top-1/4 transform -translate-y-1/2" style={{ zIndex: 0 }}>
-                  <div className="flex flex-col space-y-3">
-                    <div className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full" />
-                    </div>
-                    <div className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm">
-                      <div className="w-2 h-2 bg-gray-500 rounded-full" />
+                {/* Estadísticas */}
+                <div className="grid grid-cols-3 gap-4 py-3">
+                  <AnimatedStat value="+16" label="Años Experiencia" delay={600} />
+                  <AnimatedStat value="100+" label="Proyectos" delay={800} />
+                  <AnimatedStat value="50+" label="Clientes" delay={1000} />
+                </div>
+              </div>
+
+              {/* Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <SkillCard
+                  icon={<DesignIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
+                  title="Diseño UX Estratégico"
+                  description="Como Diseñador SR UX en Truper, combino investigación de usuarios con diseño visual para crear soluciones que impulsan los resultados de negocio."
+                  technologies={["Figma", "Design Systems", "User Research"]}
+                  delay={1200}
+                />
+                
+                <SkillCard
+                  icon={<CodeIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
+                  title="Desarrollo Frontend"
+                  description="Implemento mis diseños con JavaScript y React.js, garantizando que la visión creativa se traduzca en código de alta calidad y rendimiento."
+                  technologies={["React.js", "Next.js", "TypeScript"]}
+                  delay={1400}
+                />
+              </div>
+
+              {/* Filosofía */}
+              <div className={`bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700
+                transform transition-all duration-1000 delay-1600 ${
+                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                }`}>
+                <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
+                  Mi enfoque trasciende el diseño convencional, situándome en la valiosa intersección entre
+                  <span className="font-semibold mx-1 text-gray-900 dark:text-white"> diseño</span>,
+                  <span className="font-semibold mx-1 text-gray-900 dark:text-white"> tecnología</span> y
+                  <span className="font-semibold mx-1 text-gray-900 dark:text-white"> arte</span>.
+                  Cada proyecto refleja mi compromiso con la <span className="underline decoration-gray-400 decoration-1 underline-offset-2 font-semibold">excelencia</span>,
+                  creando interfaces intuitivas que <span className="font-semibold text-gray-900 dark:text-white">generan valor medible</span>.
+                </p>
+              </div>
+
+              {/* Botones CTA desktop */}
+              <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-1800 ${
+                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}>
+                <Link
+                  href="/portfolio"
+                  className="group inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white 
+                    hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-gray-900 font-semibold rounded-lg 
+                    transition-all duration-300 tracking-wide text-sm"
+                >
+                  VER PORTAFOLIO
+                  <ExternalLinkIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+
+                <a
+                  href="mailto:carlos.boor@gmail.com"
+                  className="group inline-flex items-center px-6 py-3 bg-white dark:bg-gray-800 
+                    border border-gray-300 dark:border-gray-600 hover:border-gray-400 
+                    dark:hover:border-gray-500 text-gray-700 dark:text-gray-200 hover:text-gray-900 
+                    dark:hover:text-white font-semibold rounded-lg transition-all duration-300 
+                    tracking-wide text-sm"
+                >
+                  <EmailIcon className="w-4 h-4 mr-2" />
+                  CONTACTARME
+                </a>
+              </div>
+            </div>
+
+            {/* Columna de imagen desktop */}
+            <div className="lg:w-2/5 relative h-full flex items-center justify-center">
+              <div className={`relative transform transition-all duration-1000 delay-1000 ${
+                isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
+              }`}>
+                
+                <div className="relative">
+                  <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 max-h-[50vh]">
+                    <Image
+                      src="/images/home/hero-image.png"
+                      alt="Carlos Armando Boyzo - UX Designer & Frontend Developer"
+                      width={400}
+                      height={500}
+                      className="w-full h-auto object-cover max-h-[50vh] grayscale hover:grayscale-0 transition-all duration-500"
+                      priority
+                    />
+                  </div>
+
+                  {/* Indicadores minimalistas */}
+                  <div className="absolute -right-2 top-1/4 transform -translate-y-1/2">
+                    <div className="flex flex-col space-y-3">
+                      <div className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full" />
+                      </div>
+                      <div className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm">
+                        <div className="w-2 h-2 bg-gray-500 rounded-full" />
+                      </div>
                     </div>
                   </div>
                 </div>
