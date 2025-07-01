@@ -143,7 +143,7 @@ export default function HeroSection() {
   const experience = currentYear - 2008; // Asumiendo que empezó en 2008
 
   return (
-    <section className={`h-[90vh] max-h-[90vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`}>
+    <section className={`h-[100vh] max-h-[100vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`}>
       
       {/* Elementos decorativos minimalistas */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
