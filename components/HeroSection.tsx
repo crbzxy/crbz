@@ -149,27 +149,16 @@ export default function HeroSection() {
           {/* Layout móvil: Todo en una columna */}
           <div className="lg:hidden space-y-6 sm:space-y-8">
             
-            {/* Badge */}
-            <div className={`inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 dark:bg-gray-800 
-              text-gray-600 dark:text-gray-400 rounded-full text-xs sm:text-sm font-medium tracking-widest uppercase 
-              border border-gray-200 dark:border-gray-700 transform transition-all duration-1000 ${
-                isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-              }`}>
-              <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-gray-400 rounded-full mr-2 sm:mr-3" />
-              Developer • Designer • Creative
-            </div>
-
             {/* Título */}
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white 
-              leading-tight tracking-tight transform transition-all duration-1000 delay-200 ${
+              leading-tight tracking-tight transform transition-all duration-1000 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
-              <span className="block">Creator &</span>
-              <span className="block text-gray-700 dark:text-gray-300">Artist</span>
+              Creator & Artist
             </h1>
 
             {/* Descripción */}
-            <div className={`transform transition-all duration-1000 delay-400 ${
+            <div className={`transform transition-all duration-1000 delay-200 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <div className="relative">
@@ -184,13 +173,13 @@ export default function HeroSection() {
 
             {/* Estadísticas */}
             <div className="grid grid-cols-3 gap-2 sm:gap-4 py-2 sm:py-3">
-              <AnimatedStat value="+16" label="Años Experiencia" delay={600} />
-              <AnimatedStat value="100+" label="Proyectos" delay={800} />
-              <AnimatedStat value="50+" label="Clientes" delay={1000} />
+              <AnimatedStat value="+16" label="Años Experiencia" delay={400} />
+              <AnimatedStat value="100+" label="Proyectos" delay={600} />
+              <AnimatedStat value="50+" label="Clientes" delay={800} />
             </div>
 
             {/* Imagen en móvil */}
-            <div className={`relative max-w-sm mx-auto transform transition-all duration-1000 delay-1000 ${
+            <div className={`relative max-w-sm mx-auto transform transition-all duration-1000 delay-800 ${
               isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
             }`}>
               <div className="relative rounded-lg overflow-hidden shadow-lg max-h-[40vh] sm:max-h-[45vh]">
@@ -206,7 +195,7 @@ export default function HeroSection() {
             </div>
 
             {/* Botones CTA en móvil - Posición prominente */}
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 transform transition-all duration-1000 delay-1200 ${
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 transform transition-all duration-1000 delay-1000 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <Link
@@ -239,7 +228,7 @@ export default function HeroSection() {
                 title="Diseño UX Estratégico"
                 description="Como Diseñador SR UX en Truper, combino investigación de usuarios con diseño visual para crear soluciones que impulsan los resultados de negocio."
                 technologies={["Figma", "Design Systems", "User Research"]}
-                delay={1400}
+                delay={1200}
               />
               
               <SkillCard
@@ -247,13 +236,13 @@ export default function HeroSection() {
                 title="Desarrollo Frontend"
                 description="Implemento mis diseños con JavaScript y React.js, garantizando que la visión creativa se traduzca en código de alta calidad y rendimiento."
                 technologies={["React.js", "Next.js", "TypeScript"]}
-                delay={1600}
+                delay={1400}
               />
             </div>
 
             {/* Filosofía en móvil */}
             <div className={`bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-700
-              transform transition-all duration-1000 delay-1800 ${
+              transform transition-all duration-1000 delay-1600 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
               <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
@@ -273,27 +262,16 @@ export default function HeroSection() {
             {/* Columna de contenido */}
             <div className="lg:w-3/5 space-y-8">
               
-              {/* Badge */}
-              <div className={`inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 
-                text-gray-600 dark:text-gray-400 rounded-full text-sm font-medium tracking-widest uppercase 
-                border border-gray-200 dark:border-gray-700 transform transition-all duration-1000 ${
-                  isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-                }`}>
-                <span className="w-2 h-2 bg-gray-400 rounded-full mr-3" />
-                Developer • Designer • Creative
-              </div>
-
               {/* Título */}
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white 
-                leading-none tracking-tight transform transition-all duration-1000 delay-200 ${
+                leading-none tracking-tight transform transition-all duration-1000 ${
                   isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}>
-                <span className="block">Creator &</span>
-                <span className="block text-gray-700 dark:text-gray-300">Artist</span>
+                Creator & Artist
               </h1>
 
               {/* Descripción */}
-              <div className={`space-y-3 transform transition-all duration-1000 delay-400 ${
+              <div className={`space-y-3 transform transition-all duration-1000 delay-200 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
                 <div className="relative">
@@ -307,9 +285,9 @@ export default function HeroSection() {
 
                 {/* Estadísticas */}
                 <div className="grid grid-cols-3 gap-4 py-3">
-                  <AnimatedStat value="+16" label="Años Experiencia" delay={600} />
-                  <AnimatedStat value="100+" label="Proyectos" delay={800} />
-                  <AnimatedStat value="50+" label="Clientes" delay={1000} />
+                  <AnimatedStat value="+16" label="Años Experiencia" delay={400} />
+                  <AnimatedStat value="100+" label="Proyectos" delay={600} />
+                  <AnimatedStat value="50+" label="Clientes" delay={800} />
                 </div>
               </div>
 
@@ -320,7 +298,7 @@ export default function HeroSection() {
                   title="Diseño UX Estratégico"
                   description="Como Diseñador SR UX en Truper, combino investigación de usuarios con diseño visual para crear soluciones que impulsan los resultados de negocio."
                   technologies={["Figma", "Design Systems", "User Research"]}
-                  delay={1200}
+                  delay={1000}
                 />
                 
                 <SkillCard
@@ -328,12 +306,12 @@ export default function HeroSection() {
                   title="Desarrollo Frontend"
                   description="Implemento mis diseños con JavaScript y React.js, garantizando que la visión creativa se traduzca en código de alta calidad y rendimiento."
                   technologies={["React.js", "Next.js", "TypeScript"]}
-                  delay={1400}
+                  delay={1200}
                 />
               </div>
 
               {/* Botones CTA desktop */}
-              <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-1600 ${
+              <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-1400 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
                 <Link
@@ -362,7 +340,7 @@ export default function HeroSection() {
 
             {/* Columna de imagen desktop */}
             <div className="lg:w-2/5 relative h-full flex items-center justify-center">
-              <div className={`relative transform transition-all duration-1000 delay-1000 ${
+              <div className={`relative transform transition-all duration-1000 delay-800 ${
                 isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
               }`}>
                 
