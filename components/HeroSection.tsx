@@ -56,7 +56,7 @@ const AnimatedStat = ({ value, label, delay = 0 }: { value: string; label: strin
   return (
     <div className={`text-center transform transition-all duration-700 delay-${delay} ${
       isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-    }`}>
+    }`} style={{ zIndex: 0 }}>
       <div className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1">
         {value}
       </div>
@@ -93,6 +93,7 @@ const SkillCard = ({
       className={`bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700
         transform transition-all duration-500 hover:shadow-md ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
       `}
+      style={{ zIndex: 0 }}
     >
       <div className="flex items-center mb-3">
         <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mr-3">
@@ -143,10 +144,10 @@ export default function HeroSection() {
   const experience = currentYear - 2008; // Asumiendo que empezó en 2008
 
   return (
-    <section className={`h-[100vh] max-h-[100vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`}>
+    <section className={`h-[100%] min-h-[100vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`} style={{ zIndex: 0 }}>
       
       {/* Elementos decorativos minimalistas */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
         <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-gray-300 dark:bg-gray-700 rounded-full opacity-40" />
         <div className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full opacity-30" />
       </div>
@@ -155,14 +156,14 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full">
           
           {/* Columna de contenido */}
-          <div className="lg:w-3/5 space-y-8">
+          <div className="lg:w-3/5 space-y-8" style={{ zIndex: 0 }}>
             
             {/* Badge minimalista */}
             <div className={`inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 
               text-gray-600 dark:text-gray-400 rounded-full text-sm font-medium tracking-widest uppercase 
               border border-gray-200 dark:border-gray-700 transform transition-all duration-1000 ${
                 isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-              }`}>
+              }`} style={{ zIndex: 0 }}>
               <span className="w-2 h-2 bg-gray-400 rounded-full mr-3" />
               Developer • Designer • Creative
             </div>
@@ -171,7 +172,7 @@ export default function HeroSection() {
             <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white 
               leading-none tracking-tight transform transition-all duration-1000 delay-200 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}>
+              }`} style={{ zIndex: 0 }}>
               <span className="block">Creator &</span>
               <span className="block text-gray-700 dark:text-gray-300">Artist</span>
             </h1>
@@ -179,7 +180,7 @@ export default function HeroSection() {
             {/* Descripción principal */}
             <div className={`space-y-3 transform transition-all duration-1000 delay-400 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-            }`}>
+            }`} style={{ zIndex: 0 }}>
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700" />
                 <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed pl-6 tracking-wide">
@@ -198,7 +199,7 @@ export default function HeroSection() {
             </div>
 
             {/* Tarjetas de habilidades */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ zIndex: 0 }}>
               <SkillCard
                 icon={<DesignIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
                 title="Diseño UX Estratégico"
@@ -220,7 +221,7 @@ export default function HeroSection() {
             <div className={`bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700
               transform transition-all duration-1000 delay-1600 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              }`}>
+              }`} style={{ zIndex: 0 }}>
               <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
                 Mi enfoque trasciende el diseño convencional, situándome en la valiosa intersección entre
                 <span className="font-semibold mx-1 text-gray-900 dark:text-white"> diseño</span>,
@@ -234,7 +235,7 @@ export default function HeroSection() {
             {/* Botones CTA */}
             <div className={`flex flex-wrap gap-3 transform transition-all duration-1000 delay-1800 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-            }`}>
+            }`} style={{ zIndex: 0 }}>
               <Link
                 href="/portfolio"
                 className="group inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white 
@@ -260,7 +261,7 @@ export default function HeroSection() {
           </div>
 
           {/* Columna de imagen */}
-          <div className="lg:w-2/5 relative h-full flex items-center justify-center">
+          <div className="lg:w-2/5 relative h-full flex items-center justify-center" style={{ zIndex: 0 }}>
             <div className={`relative z-10 transform transition-all duration-1000 delay-1000 ${
               isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
             }`}>
@@ -280,7 +281,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Indicadores minimalistas */}
-                <div className="absolute -right-2 top-1/4 transform -translate-y-1/2">
+                <div className="absolute -right-2 top-1/4 transform -translate-y-1/2" style={{ zIndex: 0 }}>
                   <div className="flex flex-col space-y-3">
                     <div className="p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm">
                       <div className="w-2 h-2 bg-gray-400 rounded-full" />
