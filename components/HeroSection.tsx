@@ -251,6 +251,22 @@ export default function HeroSection() {
               />
             </div>
 
+            {/* Filosofía en móvil */}
+            <div className={`bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-700
+              transform transition-all duration-1000 delay-1800 ${
+                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
+                Mi enfoque trasciende el diseño convencional, situándome en la valiosa intersección entre
+                <span className="font-semibold mx-1 text-gray-900 dark:text-white"> diseño</span>,
+                <span className="font-semibold mx-1 text-gray-900 dark:text-white"> tecnología</span> y
+                <span className="font-semibold mx-1 text-gray-900 dark:text-white"> arte</span>.
+                Cada proyecto refleja mi compromiso con la <span className="underline decoration-gray-400 decoration-1 underline-offset-2 font-semibold">excelencia</span>,
+                creando interfaces intuitivas que <span className="font-semibold text-gray-900 dark:text-white">generan valor medible</span>.
+              </p>
+            </div>
+          </div>
+
           {/* Layout desktop: Dos columnas */}
           <div className="hidden lg:flex lg:items-center lg:gap-16">
             
@@ -316,23 +332,8 @@ export default function HeroSection() {
                 />
               </div>
 
-              {/* Filosofía */}
-              <div className={`bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700
-                transform transition-all duration-1000 delay-1600 ${
-                  isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}>
-                <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide">
-                  Mi enfoque trasciende el diseño convencional, situándome en la valiosa intersección entre
-                  <span className="font-semibold mx-1 text-gray-900 dark:text-white"> diseño</span>,
-                  <span className="font-semibold mx-1 text-gray-900 dark:text-white"> tecnología</span> y
-                  <span className="font-semibold mx-1 text-gray-900 dark:text-white"> arte</span>.
-                  Cada proyecto refleja mi compromiso con la <span className="underline decoration-gray-400 decoration-1 underline-offset-2 font-semibold">excelencia</span>,
-                  creando interfaces intuitivas que <span className="font-semibold text-gray-900 dark:text-white">generan valor medible</span>.
-                </p>
-              </div>
-
               {/* Botones CTA desktop */}
-              <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-1800 ${
+              <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-1600 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
                 <Link
