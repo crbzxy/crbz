@@ -135,7 +135,7 @@ export default function HeroSection() {
   const experience = currentYear - 2008;
 
   return (
-    <section className={`h-[100%] min-h-[100vh] bg-white dark:bg-gray-900 relative ${robotoCondensed.className}`}>
+    <section className={`h-[100%] min-h-[100vh] bg-white dark:bg-gray-900 relative flex items-center ${robotoCondensed.className}`}>
       
       {/* Elementos decorativos minimalistas - solo en desktop */}
       <div className="hidden lg:block absolute inset-0 overflow-hidden pointer-events-none">
@@ -143,11 +143,11 @@ export default function HeroSection() {
         <div className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-gray-400 dark:bg-gray-600 rounded-full opacity-30" />
       </div>
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 relative h-full flex items-center">
-        <div className="w-full max-w-7xl mx-auto">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 relative w-full">
+        <div className="w-full max-w-7xl mx-auto flex items-center justify-center">
           
           {/* Layout móvil: Todo en una columna */}
-          <div className="lg:hidden space-y-6 sm:space-y-8">
+          <div className="lg:hidden space-y-6 sm:space-y-8 flex flex-col items-center text-center">
             
             {/* Título */}
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white 
@@ -161,14 +161,11 @@ export default function HeroSection() {
             <div className={`transform transition-all duration-1000 delay-200 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
-              <div className="relative">
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700" />
-                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed pl-4 sm:pl-6 tracking-wide">
-                  Con más de <span className="font-bold text-gray-900 dark:text-white text-lg sm:text-xl">{experience} años de trayectoria</span>,
-                  transformo conceptos en experiencias digitales que <em className="text-gray-800 dark:text-gray-200 not-italic font-medium">capturan la atención</em> y
-                  <em className="text-gray-800 dark:text-gray-200 not-italic font-medium"> generan resultados</em>.
-                </p>
-              </div>
+              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide max-w-2xl">
+                Con más de <span className="font-bold text-gray-900 dark:text-white text-lg sm:text-xl">{experience} años de trayectoria</span>,
+                transformo conceptos en experiencias digitales que <em className="text-gray-800 dark:text-gray-200 not-italic font-medium">capturan la atención</em> y
+                <em className="text-gray-800 dark:text-gray-200 not-italic font-medium"> generan resultados</em>.
+              </p>
             </div>
 
             {/* Estadísticas */}
@@ -257,10 +254,10 @@ export default function HeroSection() {
           </div>
 
           {/* Layout desktop: Dos columnas */}
-          <div className="hidden lg:flex lg:items-center lg:gap-16">
+          <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-16">
             
             {/* Columna de contenido */}
-            <div className="lg:w-3/5 space-y-8">
+            <div className="lg:w-3/5 space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
               
               {/* Título */}
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white 
@@ -275,8 +272,8 @@ export default function HeroSection() {
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
                 <div className="relative">
-                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700" />
-                  <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed pl-6 tracking-wide">
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 hidden lg:block" />
+                  <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed lg:pl-6 tracking-wide max-w-2xl lg:max-w-none">
                     Con más de <span className="font-bold text-gray-900 dark:text-white text-xl md:text-2xl">{experience} años de trayectoria</span>,
                     transformo conceptos en experiencias digitales que <em className="text-gray-800 dark:text-gray-200 not-italic font-medium">capturan la atención</em> y
                     <em className="text-gray-800 dark:text-gray-200 not-italic font-medium"> generan resultados</em>.
@@ -292,7 +289,7 @@ export default function HeroSection() {
               </div>
 
               {/* Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center lg:justify-items-start">
                 <SkillCard
                   icon={<DesignIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
                   title="Diseño UX Estratégico"
@@ -311,7 +308,7 @@ export default function HeroSection() {
               </div>
 
               {/* Botones CTA desktop */}
-              <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-1400 ${
+              <div className={`flex flex-wrap gap-4 justify-center lg:justify-start transform transition-all duration-1000 delay-1400 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}>
                 <Link
