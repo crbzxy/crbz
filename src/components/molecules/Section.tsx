@@ -5,17 +5,20 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   title?: string;
   children: ReactNode;
   as?: 'section' | 'div';
+  id?: string;
 }
 
 export function Section({
   title,
   children,
   as: Component = 'section',
+  id,
   className,
   ...props
 }: SectionProps) {
   return (
     <Component
+      id={id}
       className={cn('py-12 md:py-16', className)}
       {...props}
     >
@@ -28,4 +31,3 @@ export function Section({
     </Component>
   );
 }
-

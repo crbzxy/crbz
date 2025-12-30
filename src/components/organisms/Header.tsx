@@ -11,25 +11,22 @@ export function Header() {
             href="/"
             className="text-xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
-            {person.name.toUpperCase()}
+            {person.name}
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
-            {routes
-              .filter((route) => route.href !== '/')
-              .map((route) => (
-                <Link
-                  key={route.href}
-                  href={route.href}
-                  variant="nav"
-                >
-                  {route.name}
-                </Link>
-              ))}
+            {routes.map((route) => (
+              <a
+                key={route.href}
+                href={route.href}
+                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium tracking-wide transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md px-3 py-2"
+              >
+                {route.name}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
     </header>
   );
 }
-

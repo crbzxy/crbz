@@ -5,7 +5,7 @@ import { person, socialLinks } from '@/src/constants/person';
 
 export function Contact() {
   return (
-    <Section title="Contacto" className="py-8 md:py-12">
+    <Section id="contacto" title="Contacto" className="py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 tracking-wide">

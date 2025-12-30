@@ -16,18 +16,9 @@ export function Footer() {
             {socialLinks.map((link) => (
               <ContactLink key={link.platform} link={link} />
             ))}
-            <ContactLink
-              link={{
-                platform: 'Email',
-                url: person.email,
-                icon: 'email',
-                label: `Enviar email a ${person.email}`,
-              }}
-            />
           </div>
         </div>
       </div>
     </footer>
   );
 }
-
