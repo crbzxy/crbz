@@ -30,15 +30,18 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-3 md:py-4' : 'py-4 md:py-6'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass py-3 md:py-4' : 'py-4 md:py-6'
+        }`}
     >
       <div className="container flex items-center justify-between">
         <a
           href="#"
           className="font-display text-base md:text-lg font-bold tracking-tight"
-          onClick={closeMobileMenu}
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            closeMobileMenu();
+          }}
         >
           {person.name.toUpperCase()}
         </a>
@@ -50,6 +53,13 @@ export function Header() {
               key={link.href}
               href={link.href}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector(link.href);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
             >
               {link.label}
             </a>
@@ -60,6 +70,13 @@ export function Header() {
           <a
             href="#servicios"
             className="inline-flex px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.querySelector('#servicios');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
           >
             Servicios
           </a>
@@ -94,7 +111,14 @@ export function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={closeMobileMenu}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector(link.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    closeMobileMenu();
+                  }}
                   className="block text-base text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {link.label}
@@ -102,7 +126,14 @@ export function Header() {
               ))}
               <a
                 href="#servicios"
-                onClick={closeMobileMenu}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.querySelector('#servicios');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                  closeMobileMenu();
+                }}
                 className="block w-full text-center px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
               >
                 Servicios

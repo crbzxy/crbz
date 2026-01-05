@@ -51,6 +51,13 @@ export function Hero() {
             <a
               href="#sobre-mi"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm sm:text-base transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector('#sobre-mi');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
             >
               Conoce más
               <ArrowDown className="w-4 h-4" />
@@ -58,6 +65,13 @@ export function Hero() {
             <a
               href="#contacto"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full glass font-medium text-sm sm:text-base transition-all hover:bg-card hover:scale-105"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector('#contacto');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
             >
               Contáctame
             </a>

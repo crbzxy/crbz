@@ -94,7 +94,7 @@ export const skillCategories: SkillCategory[] = [
 
             // Calidad & Procesos (Clave para Tech Lead)
             'CI/CD (GitHub Actions)',
-            'Testing (Jest / Detox)',
+            'Testing (Jest)',
             'Code Review & Mentoring',
             'Optimización de Performance',
 
@@ -148,9 +148,8 @@ export const services: Service[] = [
 ];
 
 export const navLinks: NavLink[] = [
-    { href: '#sobre-mi', label: 'Perfil' },
-    { href: '#skills', label: 'Expertise' },
-    { href: '#proyectos', label: 'Proyectos' }, // "Proyectos" suele tener mejor CTR que "Contacto" directo
+    { href: '#sobre-mi', label: 'Sobre Mí' },
+    { href: '#habilidades', label: 'Habilidades' },
     { href: '#contacto', label: 'Contacto' },
 ];
 
