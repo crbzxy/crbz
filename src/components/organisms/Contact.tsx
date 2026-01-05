@@ -1,37 +1,82 @@
-import { Section } from '@/src/components/molecules/Section';
-import { ContactLink } from '@/src/components/molecules/ContactLink';
-import { Icon } from '@/src/components/atoms/Icon';
+'use client';
+
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Mail, ArrowUpRight } from 'lucide-react';
 import { person, socialLinks } from '@/src/constants/person';
+import { getSocialIcon } from '@/src/utils/socialIcons';
 
 export function Contact() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
   return (
-    <Section id="contacto" title="Contacto" className="py-8 md:py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 tracking-wide">
-            ¿Interesado en colaborar? Escríbeme para discutir tu proyecto.
-          </p>
-
-          <a
-            href={`mailto:${person.email}`}
-            className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-semibold transition-all duration-300 tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 dark:focus:ring-white shadow-lg hover:shadow-xl"
+    <section id="contacto" className="section-padding relative" ref={ref}>
+      <div className="container">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            <Icon name="email" size={20} className="mr-2" />
-            Enviar Email
-          </a>
-        </div>
+            <h2 className="font-display text-sm font-medium text-primary uppercase tracking-widest mb-4">
+              Contacto
+            </h2>
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 sm:mb-6 text-foreground">
+              ¿Interesado en colaborar?
+            </p>
+            <p className="text-lg sm:text-xl text-muted-foreground mb-8 sm:mb-12">
+              Escríbeme para discutir tu proyecto.
+            </p>
+          </motion.div>
 
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Sígueme en redes
-          </h3>
-          <div className="flex items-center gap-4">
-            {socialLinks.map((link) => (
-              <ContactLink key={link.platform} link={link} />
-            ))}
-          </div>
+          <motion.a
+            href={`mailto:${person.email}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="group inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full bg-primary text-primary-foreground font-display font-semibold text-base sm:text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/25"
+          >
+            <Mail className="w-5 h-5" />
+            Enviar Email
+            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </motion.a>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16"
+          >
+            <p className="text-sm text-muted-foreground mb-6">
+              Sígueme en redes
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              {socialLinks.map((link) => {
+                const Icon = getSocialIcon(link.icon);
+                return (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`p-3 sm:p-4 rounded-full glass text-muted-foreground transition-all hover:scale-110 ${link.hoverColor || ''}`}
+                    aria-label={link.label}
+                  >
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
       </div>
-    </Section>
+
+      {/* Background gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-gradient-to-t from-rgb-blue/10 via-transparent to-transparent blur-3xl" />
+      </div>
+    </section>
   );
 }

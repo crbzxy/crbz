@@ -1,65 +1,84 @@
-import Image from 'next/image';
+'use client';
+
+import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 import { person } from '@/src/constants/person';
-import { cn } from '@/src/utils/cn';
+import { FloatingShapes } from './FloatingShapes';
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight leading-tight">
-              {person.name}
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      <FloatingShapes />
+
+      <div className="container relative z-10 px-4 sm:px-6">
+        <div className="max-w-2xl pt-20 md:pt-0">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-4 sm:mb-6 text-foreground">
+              Carlos Armando
+              <br />
+              Boyzo
             </h1>
-            <p className="text-2xl md:text-3xl text-blue-600 dark:text-blue-400 mb-6 tracking-wide font-semibold">
-              {person.title}
-            </p>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed tracking-wide max-w-2xl mx-auto lg:mx-0 mb-8">
-              {person.description}
-            </p>
+          </motion.div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#servicios"
-                className={cn(
-                  'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 tracking-wide',
-                  'focus:outline-none focus:ring-2 focus:ring-offset-2',
-                  'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 focus:ring-gray-900 dark:focus:ring-white'
-                )}
-              >
-                Ver Servicios
-              </a>
-              <a
-                href="#contacto"
-                className={cn(
-                  'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 tracking-wide',
-                  'focus:outline-none focus:ring-2 focus:ring-offset-2',
-                  'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200',
-                  'hover:border-gray-400 dark:hover:border-gray-500 hover:text-gray-900 dark:hover:text-white focus:ring-gray-500'
-                )}
-              >
-                Contactar
-              </a>
-            </div>
-          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg sm:text-xl md:text-2xl font-display font-medium text-gradient-primary mb-6 sm:mb-8"
+          >
+            {person.title}
+          </motion.h2>
 
-          {/* Image */}
-          <div className="relative w-full max-h-[70vh] mx-auto lg:max-w-none">
-            <div className="relative rounded-2xl overflow-hidden">
-              <Image
-                src="/images/home/hero-image.png"
-                alt={`${person.name} - ${person.title}`}
-                width={600}
-                height={600}
-                className="w-full h-auto object-cover max-h-[70vh]"
-                priority
-              />
-            </div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl"
+          >
+            {person.description}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4"
+          >
+            <a
+              href="#sobre-mi"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm sm:text-base transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+            >
+              Conoce más
+              <ArrowDown className="w-4 h-4" />
+            </a>
+            <a
+              href="#contacto"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full glass font-medium text-sm sm:text-base transition-all hover:bg-card hover:scale-105"
+            >
+              Contáctame
+            </a>
+          </motion.div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="hidden sm:block absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+          <motion.div
+            className="w-1.5 h-1.5 rounded-full bg-muted-foreground"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

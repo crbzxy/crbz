@@ -19,13 +19,15 @@ export function Section({
   return (
     <Component
       id={id}
-      className={cn('py-12 md:py-16', className)}
+      className={cn('section-padding', className)}
       {...props}
     >
       {title && (
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight">
-          {title}
-        </h2>
+        <div className="mb-16">
+          <h2 className="font-display text-sm font-medium text-primary uppercase tracking-widest mb-4">
+            {title}
+          </h2>
+        </div>
       )}
       {children}
     </Component>

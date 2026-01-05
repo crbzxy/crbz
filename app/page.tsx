@@ -9,12 +9,10 @@ export default function Home() {
   return (
     <PageLayout>
       <Hero />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <About />
-        <Services />
-        <Skills />
-        <Contact />
-      </div>
+      <About />
+      <Services />
+      <Skills />
+      <Contact />
     </PageLayout>
   );
 }

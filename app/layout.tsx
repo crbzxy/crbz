@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { robotoCondensed, robotoMono } from '@/src/constants/fonts';
+import { spaceGrotesk, inter } from '@/src/constants/fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -13,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" className="dark">
       <body
-        className={`${robotoCondensed.variable} ${robotoMono.variable} font-sans antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} font-sans antialiased`}
       >
         {children}
       </body>

@@ -1,22 +1,32 @@
-import { ContactLink } from '@/src/components/molecules/ContactLink';
-import { person, socialLinks } from '@/src/constants/person';
+'use client';
+
+import { motion } from 'framer-motion';
+import { person } from '@/src/constants/person';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white py-8 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-gray-400">
+    <footer className="py-8 border-t border-border">
+      <div className="container">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="text-sm text-muted-foreground"
+          >
             © {currentYear} {person.name}. Todos los derechos reservados.
-          </div>
+          </motion.p>
 
-          <div className="flex items-center gap-6">
-            {socialLinks.map((link) => (
-              <ContactLink key={link.platform} link={link} />
-            ))}
-          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-sm text-muted-foreground"
+          >
+            Hecho a pulso, contra la noche
+          </motion.p>
         </div>
       </div>
     </footer>

@@ -10,11 +10,10 @@ export function PageLayout({ children }: PageLayoutProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white dark:bg-gray-900">
+      <main className="min-h-screen bg-background">
         {children}
       </main>
       <Footer />
     </>
   );
 }
-

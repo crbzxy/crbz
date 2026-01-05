@@ -22,7 +22,7 @@ export function Button({
 
   const classes = cn(baseClasses, variantClasses, className);
 
-  if (asChild && typeof children === 'object' && 'props' in children) {
+  if (asChild && typeof children === 'object' && children !== null && 'props' in children) {
     return children;
   }
 
