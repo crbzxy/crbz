@@ -9,10 +9,9 @@ import type {
 
 export const person: Person = {
     name: 'Carlos Armando Boyzo',
-    // Título optimizado para SEO: combina el rol oficial con la especialidad técnica
-    title: 'Senior Product Designer & Tech Lead | React Native Specialist',
+    title: 'Diseñador de producto senior y tech lead · Especialista en React Native',
     description:
-        'Arquitecto de experiencias digitales y Tech Lead. Especialista en cerrar la brecha entre diseño y código mediante Design Systems escalables, arquitectura Frontend y desarrollo móvil con React Native.',
+        'Arquitecto de experiencias digitales y tech lead. Especialista en cerrar la brecha entre diseño y código mediante sistemas de diseño escalables, arquitectura frontend y desarrollo móvil con React Native.',
     email: 'carlos.boor@gmail.com',
     experience: 16,
 };
@@ -43,106 +42,91 @@ export const socialLinks: SocialLink[] = [
 
 export const skillCategories: SkillCategory[] = [
     {
-        title: 'Product Design', // Renombrado para sonar más actual/senior
+        title: 'Diseño de producto',
         color: 'rgb-blue',
         gradient: 'from-rgb-blue to-primary',
         skills: [
-            // Estrategia y Sistemas (Lo más buscado para Senior/Lead)
-            'Design Systems & Ops',
-            'UX Strategy & Research',
-            'Arquitectura de Información',
-            'Prototipado de Alta Fidelidad',
+            'Sistemas de diseño y operación',
+            'Estrategia e investigación UX',
+            'Arquitectura de información',
+            'Prototipado de alta fidelidad',
             'Accesibilidad (WCAG 2.1)',
-            'User Flows & Journeys',
-
-            // Herramientas & Técnico
-            'Figma (Variables & Adv. Prototyping)',
-            'Design Tokens',
+            'Flujos y recorridos de usuario',
+            'Figma (variables y prototipado avanzado)',
+            'Design tokens',
             'Adobe XD',
-            'Adobe Creative Cloud Apps',
-
-
-            // Visual & 3D (Diferenciadores)
-            'UI & Visual Design',
-            'Modelado 3D & Render',
-            'Dirección de Arte Digital',
-            'Diseño Editorial',
-            'Tipografía Avanzada',
+            'Adobe Creative Cloud',
+            'Diseño de interfaz y visual',
+            'Modelado 3D y render',
+            'Dirección de arte digital',
+            'Diseño editorial',
+            'Tipografía avanzada',
         ],
-
     },
     {
-        title: 'Engineering', // Renombrado de "Desarrollo" a "Ingeniería"
+        title: 'Ingeniería',
         color: 'rgb-green',
         gradient: 'from-rgb-green to-accent',
         skills: [
-            // Core Stack (Tu fuerte)
-            'React Native (CLI & Expo)',
+            'React Native (CLI y Expo)',
             'React.js',
             'TypeScript',
             'Next.js',
-            'Arquitectura Frontend',
-
-            // Lenguajes & Backend (Expandido por tu rol multidisciplinary)
+            'Arquitectura frontend',
             'Node.js',
             'Express.js',
             'Java',
             'Spring Framework',
-            'Python', // Agregado por tu interés y uso en herramientas
+            'Python',
             'SQL (PostgreSQL)',
             'NoSQL (Firebase/Mongo)',
-
-            // Calidad & Procesos (Clave para Tech Lead)
             'CI/CD (GitHub Actions)',
             'Testing (Jest)',
-            'Code Review & Mentoring',
-            'Optimización de Performance',
-
-            // Styling & UI Code
+            'Revisión de código y mentoría',
+            'Optimización de rendimiento',
             'Tailwind CSS',
             'Material UI / Gluestack',
             'Styled Components',
         ],
     },
     {
-        title: 'Creative Tech',
+        title: 'Tecnología creativa',
         color: 'rgb-red',
         gradient: 'from-rgb-red to-destructive',
         skills: [
-            // Fusión Arte/Tecnología
-            'Arte Generativo & AI Tools',
-            'Computer Vision (Básico)', // Por tu proyecto nopalDetector
+            'Arte generativo y herramientas de IA',
+            'Visión por computadora (básico)',
             'React Three Fiber (R3F)',
             'WebGL / Shaders',
-            'Instalaciones Interactivas',
-            'Physical Computing',
-            'Escultura Digital',
-            'Investigación Experimental',
+            'Instalaciones interactivas',
+            'Physical computing',
+            'Escultura digital',
+            'Investigación experimental',
         ],
     },
 ];
 
 export const services: Service[] = [
     {
-        title: 'Architecture & Development',
+        title: 'Arquitectura y desarrollo',
         description:
             'Liderazgo técnico en desarrollo móvil y web. Especialista en React Native, migración de legado y arquitecturas escalables.',
-        items: ['React Native', 'Frontend Architecture', 'Code Refactoring', 'Performance'],
+        items: ['React Native', 'Arquitectura frontend', 'Refactorización de código', 'Rendimiento'],
         icon: 'code',
-        highlight: true, // Cambié el highlight aquí por ser tu rol principal actual en Truper
+        highlight: true,
     },
     {
-        title: 'Design Systems & Ops',
+        title: 'Sistemas de diseño y operación',
         description:
             'Creación y mantenimiento de sistemas de diseño que conectan Figma con código, mejorando la velocidad y consistencia del equipo.',
-        items: ['Design Tokens', 'Component Libraries', 'Documentation', 'Governance'],
+        items: ['Design tokens', 'Bibliotecas de componentes', 'Documentación', 'Gobernanza'],
         icon: 'design',
     },
     {
-        title: 'Creative Technology',
+        title: 'Tecnología creativa',
         description:
             'Desarrollo de prototipos experimentales, instalaciones de arte digital e integración de IA/ML en interfaces visuales.',
-        items: ['3D Web Experiences', 'AI Integration', 'Interactive Art'],
+        items: ['Experiencias web 3D', 'Integración de IA', 'Arte interactivo'],
         icon: 'creative',
     },
 ];
@@ -155,17 +139,12 @@ export const navLinks: NavLink[] = [
 
 // Skills planas para meta-tags o nubes de etiquetas
 export const skills: Skill[] = [
-    // Tech Lead / Dev
-    { name: 'React Native', category: 'Development' },
-    { name: 'TypeScript', category: 'Development' },
-    { name: 'Architecture', category: 'Development' },
-    { name: 'Python', category: 'Development' },
-
-    // Design
-    { name: 'Design Systems', category: 'Design' },
-    { name: 'Figma', category: 'Design' },
-
-    // Creative / Emerging
-    { name: 'AI Generation', category: 'Creative' },
-    { name: 'Three.js', category: 'Creative' },
+    { name: 'React Native', category: 'Desarrollo' },
+    { name: 'TypeScript', category: 'Desarrollo' },
+    { name: 'Arquitectura', category: 'Desarrollo' },
+    { name: 'Python', category: 'Desarrollo' },
+    { name: 'Sistemas de diseño', category: 'Diseño' },
+    { name: 'Figma', category: 'Diseño' },
+    { name: 'IA generativa', category: 'Creativo' },
+    { name: 'Three.js', category: 'Creativo' },
 ];

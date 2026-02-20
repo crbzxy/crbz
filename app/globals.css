@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+/* Fuentes cargadas vía next/font en layout.tsx (mejor rendimiento y sin duplicados) */
 
 @layer base {
   :root {
@@ -94,11 +94,10 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    @apply font-display;
   }
 }
 
@@ -155,4 +154,12 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
+}
+
+/* CV: ocultar header y footer al imprimir (clase declarativa en app/cv/layout.tsx) */
+@media print {
+  .cv-print-area .site-header,
+  .cv-print-area .site-footer {
+    display: none !important;
+  }
 }

@@ -181,6 +181,34 @@ Configuración en `tailwind.config.ts`:
 - Plugin de tipografía habilitado
 - Modo oscuro soportado
 
+## 🌐 Producción (carlosboyzo.com)
+
+### Variables de entorno
+
+Copia `.env.example` a `.env.local` y ajusta si hace falta:
+
+```bash
+cp .env.example .env.local
+```
+
+- **`NEXT_PUBLIC_SITE_URL`**: URL pública del sitio (p. ej. `https://carlosboyzo.com`). Se usa en metadata, Open Graph y enlaces canónicos. Si no se define, se usa `https://carlosboyzo.com` por defecto.
+
+### Optimizaciones aplicadas
+
+- **Metadata y SEO**: `metadataBase`, Open Graph, keywords y descripción para redes y buscadores.
+- **Headers de seguridad**: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` en `next.config.ts`.
+- **Code splitting**: Secciones below-the-fold (About, Services, Skills, Contact) cargadas con `dynamic()` para reducir el JS inicial.
+- **React Strict Mode**: Activado en producción.
+
+### Deploy
+
+```bash
+npm run build
+npm run start
+```
+
+En Vercel (o similar), configura `NEXT_PUBLIC_SITE_URL` con la URL de producción. El build ejecuta `next build`; si quieres que el lint bloquee el deploy, quita o cambia `eslint.ignoreDuringBuilds` en `next.config.ts`.
+
 ## 📖 Próximos Pasos
 
 - [ ] Agregar sistema de blog con Markdown

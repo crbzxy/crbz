@@ -1,5 +1,5 @@
+import Link from 'next/link';
 import { PageLayout } from '@/src/components/templates/PageLayout';
-import { Section } from '@/src/components/molecules/Section';
 import { Text } from '@/src/components/atoms/Text';
 import { Badge } from '@/src/components/atoms/Badge';
 import { Icon } from '@/src/components/atoms/Icon';
@@ -65,9 +65,9 @@ const services: Service[] = [
       'Capacitación especializada para equipos y profesionales que quieren mejorar sus habilidades en diseño UX y desarrollo frontend.',
     icon: 'coaching',
     features: [
-      'Coaching 1 a 1 en UX Design',
-      'Workshops de React y JavaScript',
-      'Capacitación en Design Systems',
+      'Mentoría 1 a 1 en diseño UX',
+      'Talleres de React y JavaScript',
+      'Capacitación en sistemas de diseño',
       'Programas personalizados para equipos',
       'Mentoría en desarrollo de carrera',
     ],
@@ -209,12 +209,12 @@ export default function ServicesPage() {
                 <Icon name="email" size={18} className="mr-2" />
                 Contactar
               </a>
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center justify-center px-6 py-3 bg-blue-500/20 text-white border-2 border-white/30 rounded-lg font-semibold hover:bg-blue-500/30 transition-colors duration-300 text-sm"
               >
                 Ver más sobre mí
-              </a>
+              </Link>
             </div>
           </div>
         </div>

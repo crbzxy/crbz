@@ -2,7 +2,7 @@ import type { HTMLAttributes } from 'react';
 import { cn } from '@/src/utils/cn';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  variant?: 'default' | 'skill';
+  variant?: 'default' | 'skill' | 'secondary';
 }
 
 export function Badge({
@@ -16,8 +16,10 @@ export function Badge({
       className={cn(
         'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide',
         variant === 'skill'
-          ? 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
-          : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300',
+          ? 'bg-secondary text-secondary-foreground'
+          : variant === 'secondary'
+            ? 'bg-secondary text-secondary-foreground border border-border print:border print:border-border print:bg-transparent'
+            : 'bg-primary/20 text-primary',
         className
       )}
       {...props}

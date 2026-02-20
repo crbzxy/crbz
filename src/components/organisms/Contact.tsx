@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, ArrowUpRight, Download } from 'lucide-react';
 import { person, socialLinks } from '@/src/constants/person';
 import { getSocialIcon } from '@/src/utils/socialIcons';
 
@@ -27,21 +27,32 @@ export function Contact() {
               ¿Interesado en colaborar?
             </p>
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 sm:mb-12">
-              Escríbeme para discutir tu proyecto.
+              Cuéntame para iniciar el proyecto o descarga mi CV.
             </p>
           </motion.div>
 
-          <motion.a
-            href={`mailto:${person.email}`}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="group inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full bg-primary text-primary-foreground font-display font-semibold text-base sm:text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/25"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           >
-            <Mail className="w-5 h-5" />
-            Enviar Email
-            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </motion.a>
+            <a
+              href={`mailto:${person.email}`}
+              className="group inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full bg-primary text-primary-foreground font-display font-semibold text-base sm:text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/25"
+            >
+              <Mail className="w-5 h-5" />
+              Enviar mensaje
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
+            <Link
+              href="/cv"
+              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full glass font-display font-semibold text-base sm:text-lg transition-all hover:bg-card hover:scale-105 border border-border"
+            >
+              <Download className="w-5 h-5" />
+              Descargar CV
+            </Link>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}

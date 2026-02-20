@@ -2,10 +2,14 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { person, navLinks } from '@/src/constants/person';
 
 export function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -30,56 +34,91 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass py-3 md:py-4' : 'py-4 md:py-6'
+      className={`site-header fixed top-0 left-0 right-0 z-50 min-h-[60px] transition-all duration-300 ${scrolled ? 'glass py-3 md:py-4' : 'py-4 md:py-6'
         }`}
     >
       <div className="container flex items-center justify-between">
-        <a
-          href="#"
-          className="font-display text-base md:text-lg font-bold tracking-tight"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            closeMobileMenu();
-          }}
-        >
-          {person.name.toUpperCase()}
-        </a>
+        {isHome ? (
+          <a
+            href="#"
+            className="font-display text-base md:text-lg font-bold tracking-tight"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              closeMobileMenu();
+            }}
+          >
+            {person.name.toUpperCase()}
+          </a>
+        ) : (
+          <Link
+            href="/"
+            className="font-display text-base md:text-lg font-bold tracking-tight"
+            onClick={closeMobileMenu}
+          >
+            {person.name.toUpperCase()}
+          </Link>
+        )}
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          {navLinks.map((link) => (
+          {navLinks.map((link) =>
+            isHome ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.querySelector(link.href);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={`/${link.href}`}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
+        </div>
+
+        <div className="hidden md:flex items-center gap-4">
+          <Link
+            href="/cv"
+            className="inline-flex px-4 lg:px-5 py-2 lg:py-2.5 rounded-full border border-border bg-transparent text-foreground text-sm font-medium transition-all hover:bg-secondary/80"
+          >
+            CV
+          </Link>
+          {isHome ? (
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              href="#servicios"
+              className="inline-flex px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.querySelector(link.href);
+                const element = document.querySelector('#servicios');
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
             >
-              {link.label}
+              Servicios
             </a>
-          ))}
-        </div>
-
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="#servicios"
-            className="inline-flex px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
-            onClick={(e) => {
-              e.preventDefault();
-              const element = document.querySelector('#servicios');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-          >
-            Servicios
-          </a>
+          ) : (
+            <Link
+              href="/#servicios"
+              className="inline-flex px-4 lg:px-5 py-2 lg:py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
+            >
+              Servicios
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -107,37 +146,65 @@ export function Header() {
             className="md:hidden overflow-hidden"
           >
             <div className="container py-4 space-y-4 glass border-t border-border/50">
-              {navLinks.map((link) => (
+              {navLinks.map((link) =>
+                isHome ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                      closeMobileMenu();
+                    }}
+                    className="block text-base text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={`/${link.href}`}
+                    onClick={closeMobileMenu}
+                    className="block text-base text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+              <Link
+                href="/cv"
+                onClick={closeMobileMenu}
+                className="block w-full text-center px-4 py-2.5 rounded-full border border-border bg-transparent text-foreground text-sm font-medium transition-all hover:bg-secondary/80"
+              >
+                CV
+              </Link>
+              {isHome ? (
                 <a
-                  key={link.href}
-                  href={link.href}
+                  href="#servicios"
                   onClick={(e) => {
                     e.preventDefault();
-                    const element = document.querySelector(link.href);
+                    const element = document.querySelector('#servicios');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                     closeMobileMenu();
                   }}
-                  className="block text-base text-muted-foreground hover:text-foreground transition-colors py-2"
+                  className="block w-full text-center px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
                 >
-                  {link.label}
+                  Servicios
                 </a>
-              ))}
-              <a
-                href="#servicios"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const element = document.querySelector('#servicios');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                  closeMobileMenu();
-                }}
-                className="block w-full text-center px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
-              >
-                Servicios
-              </a>
+              ) : (
+                <Link
+                  href="/#servicios"
+                  onClick={closeMobileMenu}
+                  className="block w-full text-center px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium transition-all hover:bg-secondary/80"
+                >
+                  Servicios
+                </Link>
+              )}
             </div>
           </motion.div>
         )}

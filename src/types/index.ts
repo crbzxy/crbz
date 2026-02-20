@@ -46,3 +46,10 @@ export interface Route {
   href: string;
 }
 
+export interface CVExperience {
+  company: string;
+  role: string;
+  period: string;
+  bullets: string[];
+}
+

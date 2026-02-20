@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowDown, Download } from 'lucide-react';
 import { person } from '@/src/constants/person';
 import { FloatingShapes } from './FloatingShapes';
 
@@ -46,11 +47,18 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4"
+            className="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
           >
+            <Link
+              href="/cv"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm sm:text-base transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+            >
+              <Download className="w-4 h-4" />
+              Descargar CV
+            </Link>
             <a
               href="#sobre-mi"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm sm:text-base transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full glass font-medium text-sm sm:text-base transition-all hover:bg-card hover:scale-105"
               onClick={(e) => {
                 e.preventDefault();
                 const element = document.querySelector('#sobre-mi');
