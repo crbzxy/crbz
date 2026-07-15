@@ -12,7 +12,7 @@ export default function App() {
     <main className="app">
       <a className="brand" href="/" aria-label="CRBZ">
         <RgbLogo />
-        <span className="brand-name">CRBZ</span>
+        <span className="brand-name">CBO</span>
       </a>
       <Suspense fallback={null}>
         <FlameScene />
