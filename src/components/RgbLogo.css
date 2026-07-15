@@ -1,0 +1,34 @@
+.rgb-logo {
+  --circle-size: 24px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.rgb-logo__circle {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.rgb-logo__circle--red {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff0000;
+}
+
+.rgb-logo__circle--green {
+  bottom: 0;
+  left: 0;
+  background: #00ff00;
+}
+
+.rgb-logo__circle--blue {
+  bottom: 0;
+  right: 0;
+  background: #0000ff;
+}
