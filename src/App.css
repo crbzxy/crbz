@@ -51,13 +51,13 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background-image: url('/textures/marble-multiply.png');
+  background-image: url('/textures/pattern-multiply.png');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   mix-blend-mode: multiply;
   opacity: 0.92;
-  filter: blur(10px);
+  filter: blur(6px);
   transform: scale(1.08);
   transform-origin: center center;
 }
