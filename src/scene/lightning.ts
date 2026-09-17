@@ -9,7 +9,8 @@ import {
   Vector3,
   type Scene,
 } from 'three';
-import { GROUND_Y, randomRange } from './constants';
+import { randomRange } from './constants';
+import type { SceneSystem } from './types';
 
 export type StrikePoint = {
   x: number;
@@ -17,13 +18,11 @@ export type StrikePoint = {
   z: number;
 };
 
-export type LightningHandle = {
-  update: (delta: number) => void;
+export type LightningHandle = SceneSystem & {
   strike: (target: StrikePoint, origin?: StrikePoint) => boolean;
   /** Cuántos rayos pueden caer a la vez todavía. */
   freeSlots: () => number;
   isActive: () => boolean;
-  dispose: () => void;
 };
 
 const CHANNELS = 8;

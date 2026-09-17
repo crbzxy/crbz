@@ -55,6 +55,18 @@ export const CAMERA_START_FOCUS = {
   z: 0.05,
 } as const;
 
+/**
+ * Escenario de props a la derecha del hero (mitad derecha del viewport).
+ * Desplazamiento ≈ cámara-right del preset `distant` (azimuth ~28°).
+ */
+export const PROP_STAGE_FOCUS = {
+  x: CAMERA_START_FOCUS.x + 2.45,
+  z: CAMERA_START_FOCUS.z - 1.35,
+} as const;
+
+/** Radio del claro de bambú alrededor del escenario de props. */
+export const PROP_STAGE_CLEAR_RADIUS = 5.5;
+
 /** Radio máximo del grupo de fuegos dentro del encuadre inicial. */
 export const FLAME_FRAME_RADIUS = 2.35;
 

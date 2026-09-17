@@ -13,11 +13,9 @@ import {
   GROUND_Y,
   randomRange,
 } from './constants';
+import type { SceneSystem } from './types';
 
-export type TurtleHandle = {
-  update: (delta: number, time: number) => void;
-  dispose: () => void;
-};
+export type TurtleHandle = SceneSystem;
 
 const WANDER_INNER = 1.2;
 const WANDER_OUTER = 9.5;
@@ -184,10 +182,10 @@ export function createTurtle(scene: Scene): TurtleHandle {
   }
 
   return {
-    update(delta, time) {
+    update(delta, simTime) {
       if (pauseTimer > 0) {
         pauseTimer -= delta;
-        const idle = Math.sin(time * 1.6) * 0.01;
+        const idle = Math.sin(simTime * 1.6) * 0.01;
         group.position.y = GROUND_Y + 0.02 + idle;
         return;
       }

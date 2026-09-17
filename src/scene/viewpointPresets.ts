@@ -2,6 +2,7 @@ import {
   CAMERA_START_FOCUS,
   GROUND_Y,
   MOON_DIRECTION,
+  PROP_STAGE_FOCUS,
   VIEW_HOLD_SECONDS,
   VIEW_TRANSITION_SECONDS,
 } from './constants';
@@ -30,7 +31,8 @@ export type ViewpointPresetName =
   | 'close'
   | 'cavalier45'
   | 'moonGaze'
-  | 'fireReveal';
+  | 'fireReveal'
+  | 'propStage';
 
 export type SequenceStep = {
   preset: ViewpointPresetName;
@@ -41,6 +43,19 @@ export type SequenceStep = {
 };
 
 const defaultUp: Vec3 = { x: 0, y: 1, z: 0 };
+
+/** Mirada entre el claro y el escenario de props (props a la derecha del cuadro). */
+const heroFrameTarget: Vec3 = {
+  x: CAMERA_START_FOCUS.x * 0.35 + PROP_STAGE_FOCUS.x * 0.65,
+  y: GROUND_Y + 1.05,
+  z: CAMERA_START_FOCUS.z * 0.35 + PROP_STAGE_FOCUS.z * 0.65,
+};
+
+const propStageTarget: Vec3 = {
+  x: PROP_STAGE_FOCUS.x,
+  y: GROUND_Y + 1.25,
+  z: PROP_STAGE_FOCUS.z,
+};
 
 function normalizeVec3(vector: Vec3): Vec3 {
   const length = Math.hypot(vector.x, vector.y, vector.z) || 1;
@@ -71,9 +86,9 @@ function buildMoonAlignedGaze(
   const azimuthDeg = (Math.atan2(opposite.x, opposite.z) * 180) / Math.PI;
   const cameraY = GROUND_Y + cameraHeightAboveGround;
   const target = {
-    x: CAMERA_START_FOCUS.x + moon.x * lookDistance,
+    x: PROP_STAGE_FOCUS.x + moon.x * lookDistance * 0.22,
     y: cameraY + moon.y * lookDistance,
-    z: CAMERA_START_FOCUS.z + moon.z * lookDistance,
+    z: PROP_STAGE_FOCUS.z + moon.z * lookDistance * 0.22,
   };
 
   return {
@@ -91,15 +106,11 @@ function buildMoonAlignedGaze(
 
 export const viewpointPresets: Record<ViewpointPresetName, ViewpointParams> = {
   distant: {
-    target: {
-      x: CAMERA_START_FOCUS.x,
-      y: GROUND_Y + 0.6,
-      z: CAMERA_START_FOCUS.z,
-    },
-    distance: 28,
+    target: { ...heroFrameTarget },
+    distance: 16,
     azimuthDeg: 28,
-    elevationDeg: 22,
-    fov: 42,
+    elevationDeg: 18,
+    fov: 44,
     up: defaultUp,
     near: 0.2,
     far: 360,
@@ -107,29 +118,40 @@ export const viewpointPresets: Record<ViewpointPresetName, ViewpointParams> = {
   },
   close: {
     target: {
-      x: CAMERA_START_FOCUS.x + 0.2,
-      y: GROUND_Y + 0.55,
-      z: CAMERA_START_FOCUS.z + 0.1,
+      x: propStageTarget.x - 0.35,
+      y: GROUND_Y + 0.95,
+      z: propStageTarget.z + 0.2,
     },
-    distance: 3.2,
-    azimuthDeg: -18,
-    elevationDeg: 12,
-    fov: 58,
+    distance: 4.4,
+    azimuthDeg: 22,
+    elevationDeg: 10,
+    fov: 52,
     up: defaultUp,
     near: 0.05,
     far: 120,
     breath: 0.04,
   },
+  propStage: {
+    target: { ...propStageTarget },
+    distance: 7.2,
+    azimuthDeg: 34,
+    elevationDeg: 14,
+    fov: 48,
+    up: defaultUp,
+    near: 0.08,
+    far: 220,
+    breath: 0.045,
+  },
   wormEye: buildMoonAlignedGaze(34, 1.35, 72, 0.03),
   cavalier45: {
     target: {
-      x: CAMERA_START_FOCUS.x,
-      y: GROUND_Y + 0.4,
-      z: CAMERA_START_FOCUS.z,
+      x: heroFrameTarget.x,
+      y: GROUND_Y + 0.55,
+      z: heroFrameTarget.z,
     },
-    distance: 18,
-    azimuthDeg: 45,
-    elevationDeg: 45,
+    distance: 15,
+    azimuthDeg: 42,
+    elevationDeg: 42,
     fov: 40,
     up: defaultUp,
     near: 0.2,
@@ -139,13 +161,13 @@ export const viewpointPresets: Record<ViewpointPresetName, ViewpointParams> = {
   moonGaze: buildMoonAlignedGaze(46, 6.4, 54, 0.035),
   fireReveal: {
     target: {
-      x: CAMERA_START_FOCUS.x + 0.08,
-      y: GROUND_Y + 1.35,
-      z: CAMERA_START_FOCUS.z + 0.06,
+      x: CAMERA_START_FOCUS.x * 0.45 + PROP_STAGE_FOCUS.x * 0.55,
+      y: GROUND_Y + 1.2,
+      z: CAMERA_START_FOCUS.z * 0.45 + PROP_STAGE_FOCUS.z * 0.55,
     },
-    distance: 5.2,
-    azimuthDeg: -12,
-    elevationDeg: 18,
+    distance: 6.4,
+    azimuthDeg: 18,
+    elevationDeg: 16,
     fov: 50,
     up: defaultUp,
     near: 0.08,
@@ -157,6 +179,7 @@ export const viewpointPresets: Record<ViewpointPresetName, ViewpointParams> = {
 export const randomViewPresets: ViewpointPresetName[] = [
   'distant',
   'close',
+  'propStage',
   'cavalier45',
   'moonGaze',
   'fireReveal',
@@ -168,11 +191,12 @@ const slowPan = VIEW_TRANSITION_SECONDS;
 
 export const defaultDollySequence: SequenceStep[] = [
   { preset: 'distant', duration: slowPan, hold: slowHold },
+  { preset: 'propStage', duration: slowPan, hold: slowHold },
   { preset: 'close', duration: slowPan, hold: slowHold },
   { preset: 'distant', duration: slowPan, hold: slowHold },
   { preset: 'moonGaze', duration: slowPan, hold: slowHold * 1.2 },
   { preset: 'fireReveal', duration: slowPan, hold: slowHold },
-  { preset: 'close', duration: slowPan, hold: slowHold },
+  { preset: 'propStage', duration: slowPan, hold: slowHold },
   { preset: 'cavalier45', duration: slowPan, hold: slowHold },
   { preset: 'wormEye', duration: slowPan, hold: slowHold * 1.1 },
   { preset: 'distant', duration: slowPan, hold: slowHold },

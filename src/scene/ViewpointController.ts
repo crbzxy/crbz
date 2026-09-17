@@ -15,7 +15,7 @@ import {
 
 type Phase = 'idle' | 'transitioning' | 'holding';
 
-function easeInOutCubic(progress: number) {
+export function easeInOutCubic(progress: number) {
   if (progress < 0.5) {
     return 4 * progress * progress * progress;
   }
@@ -26,7 +26,7 @@ function lerp(start: number, end: number, amount: number) {
   return start + (end - start) * amount;
 }
 
-function lerpParams(
+export function lerpParams(
   from: ViewpointParams,
   to: ViewpointParams,
   amount: number,

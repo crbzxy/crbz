@@ -17,6 +17,7 @@ import {
   GROUND_Y,
   randomRange,
 } from './constants';
+import type { SceneSystem } from './types';
 
 export type CloudStrikeOrigin = {
   cloudIndex: number;
@@ -25,12 +26,10 @@ export type CloudStrikeOrigin = {
   z: number;
 };
 
-export type StormCloudsHandle = {
-  update: (time: number, delta: number) => void;
+export type StormCloudsHandle = SceneSystem & {
   claimStrikeOrigin: () => CloudStrikeOrigin | null;
   pickRandomOrigin: () => CloudStrikeOrigin;
   flash: (cloudIndex: number) => void;
-  dispose: () => void;
 };
 
 type CloudPuff = {
@@ -302,12 +301,12 @@ export function createStormClouds(scene: Scene): StormCloudsHandle {
   };
 
   return {
-    update(time, delta) {
+    update(delta, simTime) {
       for (let index = 0; index < clouds.length; index += 1) {
         const cloud = clouds[index];
-        cloud.x += Math.sin(time * 0.06 + cloud.phase) * cloud.drift * delta * 7;
-        cloud.z += Math.cos(time * 0.05 + cloud.phase) * cloud.drift * delta * 7;
-        cloud.y += Math.sin(time * 0.09 + cloud.phase * 1.3) * delta * 0.08;
+        cloud.x += Math.sin(simTime * 0.06 + cloud.phase) * cloud.drift * delta * 7;
+        cloud.z += Math.cos(simTime * 0.05 + cloud.phase) * cloud.drift * delta * 7;
+        cloud.y += Math.sin(simTime * 0.09 + cloud.phase * 1.3) * delta * 0.08;
         cloud.cooldown = Math.max(0, cloud.cooldown - delta);
         flashBoost[index] = Math.max(0, flashBoost[index] - delta * 2.8);
 
@@ -318,7 +317,7 @@ export function createStormClouds(scene: Scene): StormCloudsHandle {
           );
         }
       }
-      const rainIntensity = placePuffs(time);
+      const rainIntensity = placePuffs(simTime);
       updateRain(rain, clouds, delta, rainIntensity);
     },
     claimStrikeOrigin() {

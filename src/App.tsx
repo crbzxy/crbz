@@ -1,5 +1,11 @@
-import { lazy, Suspense } from 'react';
-import { RgbLogo } from './components/RgbLogo';
+import { lazy, Suspense, useState } from 'react';
+import { Header } from './components/layout/Header';
+import { Footer } from './components/layout/Footer';
+import { Hero } from './components/sections/Hero';
+import { About } from './components/sections/About';
+import { Strengths } from './components/sections/Strengths';
+import { Contact } from './components/sections/Contact';
+import { cn } from './utils/cn';
 import './App.css';
 
 const FlameScene = lazy(async () => {
@@ -8,15 +14,29 @@ const FlameScene = lazy(async () => {
 });
 
 export default function App() {
+  const [sceneEnabled, setSceneEnabled] = useState(true);
+
   return (
-    <main className="app">
-      <a className="brand" href="/" aria-label="CRBZ">
-        <RgbLogo />
-        <span className="brand-name">CBO</span>
-      </a>
+    <div className={cn('app', !sceneEnabled && 'app--scene-off')}>
       <Suspense fallback={null}>
-        <FlameScene />
+        <FlameScene visible={sceneEnabled} />
       </Suspense>
-    </main>
+
+      <div className="marble-overlay" aria-hidden="true" />
+
+      <div className="site-content">
+        <Header
+          sceneEnabled={sceneEnabled}
+          onSceneEnabledChange={setSceneEnabled}
+        />
+        <main>
+          <Hero sceneEnabled={sceneEnabled} />
+          <About />
+          <Strengths />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </div>
   );
 }
