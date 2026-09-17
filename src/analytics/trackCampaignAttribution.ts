@@ -1,4 +1,5 @@
 const ATTRIBUTION_STORAGE_KEY = 'crbz.campaignAttribution';
+const GA_MEASUREMENT_ID = 'G-5R1L0BY554';
 
 const UTM_KEYS = [
   'utm_source',
@@ -18,7 +19,8 @@ export type CampaignAttribution = Partial<Record<UtmKey, string>> & {
 
 declare global {
   interface Window {
-    dataLayer?: Array<Record<string, unknown>>;
+    dataLayer?: Array<Record<string, unknown> | IArguments>;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -66,9 +68,26 @@ function pushToDataLayer(payload: Record<string, unknown>) {
   window.dataLayer.push(payload);
 }
 
+function sendGtagEvent(attribution: CampaignAttribution) {
+  if (typeof window.gtag !== 'function') {
+    return;
+  }
+
+  window.gtag('event', 'campaign_attribution', {
+    send_to: GA_MEASUREMENT_ID,
+    utm_source: attribution.utm_source,
+    utm_medium: attribution.utm_medium,
+    utm_campaign: attribution.utm_campaign,
+    utm_content: attribution.utm_content,
+    utm_term: attribution.utm_term,
+    fbclid: attribution.fbclid,
+    landing_path: attribution.landingPath,
+  });
+}
+
 /**
  * Captura UTM/fbclid de la URL (p. ej. Instagram link in bio),
- * los guarda en session y los envía a GTM vía dataLayer.
+ * los guarda en session y los envía a GTM + GA4.
  */
 export function trackCampaignAttribution() {
   const fromQuery = readQueryAttribution();
@@ -93,4 +112,6 @@ export function trackCampaignAttribution() {
     event: 'campaign_attribution',
     ...attribution,
   });
+
+  sendGtagEvent(attribution);
 }
