@@ -20,7 +20,37 @@
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'G-5R1L0BY554');
+
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var config = { send_page_view: true };
+        var source = params.get('utm_source');
+        var medium = params.get('utm_medium');
+        var campaign = params.get('utm_campaign');
+        var content = params.get('utm_content');
+        var term = params.get('utm_term');
+
+        if (source) config.campaign_source = source;
+        if (medium) config.campaign_medium = medium;
+        if (campaign) config.campaign_name = campaign;
+        if (content) config.campaign_content = content;
+        if (term) config.campaign_term = term;
+
+        gtag('config', 'G-5R1L0BY554', config);
+
+        if (source || medium || content || params.get('fbclid')) {
+          dataLayer.push({
+            event: 'ig_link_in_bio',
+            utm_source: source || undefined,
+            utm_medium: medium || undefined,
+            utm_campaign: campaign || undefined,
+            utm_content: content || undefined,
+            utm_term: term || undefined,
+            fbclid: params.get('fbclid') || undefined,
+            landing_url: window.location.href,
+          });
+        }
+      })();
     </script>
     <!-- Google Tag Manager -->
     <script>

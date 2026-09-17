@@ -14,6 +14,9 @@ type UtmKey = (typeof UTM_KEYS)[number];
 
 export type CampaignAttribution = Partial<Record<UtmKey, string>> & {
   landingPath: string;
+  landingUrl: string;
+  referrer: string;
+  channel: string;
   capturedAt: string;
 };
 
@@ -42,6 +45,23 @@ function hasAttribution(attribution: Partial<Record<UtmKey, string>>) {
   return Object.keys(attribution).length > 0;
 }
 
+function resolveChannel(attribution: Partial<Record<UtmKey, string>>) {
+  const source = attribution.utm_source?.toLowerCase();
+  const medium = attribution.utm_medium?.toLowerCase();
+  const content = attribution.utm_content?.toLowerCase();
+
+  if (source === 'ig' || source === 'instagram') {
+    return content === 'link_in_bio' ? 'instagram_link_in_bio' : 'instagram';
+  }
+  if (medium === 'social') {
+    return 'social';
+  }
+  if (attribution.fbclid) {
+    return 'meta_paid_or_social';
+  }
+  return 'direct_or_unknown';
+}
+
 function persistAttribution(attribution: CampaignAttribution) {
   try {
     sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(attribution));
@@ -68,13 +88,79 @@ function pushToDataLayer(payload: Record<string, unknown>) {
   window.dataLayer.push(payload);
 }
 
-function sendGtagEvent(attribution: CampaignAttribution) {
+function sendGtagAttribution(attribution: CampaignAttribution, isFreshCapture: boolean) {
   if (typeof window.gtag !== 'function') {
     return;
   }
 
+  if (isFreshCapture && attribution.utm_source) {
+    window.gtag('set', {
+      campaign_source: attribution.utm_source,
+      campaign_medium: attribution.utm_medium,
+      campaign_name: attribution.utm_campaign,
+      campaign_content: attribution.utm_content,
+      campaign_term: attribution.utm_term,
+    });
+  }
+
   window.gtag('event', 'campaign_attribution', {
     send_to: GA_MEASUREMENT_ID,
+    channel: attribution.channel,
+    source: attribution.utm_source,
+    medium: attribution.utm_medium,
+    campaign: attribution.utm_campaign,
+    content: attribution.utm_content,
+    term: attribution.utm_term,
+    fbclid: attribution.fbclid,
+    landing_path: attribution.landingPath,
+    landing_url: attribution.landingUrl,
+  });
+
+  if (attribution.channel === 'instagram_link_in_bio' && isFreshCapture) {
+    window.gtag('event', 'ig_link_in_bio', {
+      send_to: GA_MEASUREMENT_ID,
+      source: attribution.utm_source,
+      medium: attribution.utm_medium,
+      content: attribution.utm_content,
+      fbclid: attribution.fbclid,
+      landing_url: attribution.landingUrl,
+    });
+  }
+}
+
+/**
+ * Captura UTM/fbclid de URLs tipo Instagram link in bio:
+ * ?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=...
+ */
+export function trackCampaignAttribution() {
+  const fromQuery = readQueryAttribution();
+  const stored = readStoredAttribution();
+  const isFreshCapture = hasAttribution(fromQuery);
+
+  const attribution: CampaignAttribution = isFreshCapture
+    ? {
+        ...fromQuery,
+        landingPath: `${window.location.pathname}${window.location.search}`,
+        landingUrl: window.location.href,
+        referrer: document.referrer || '(direct)',
+        channel: resolveChannel(fromQuery),
+        capturedAt: new Date().toISOString(),
+      }
+    : stored ?? {
+        landingPath: window.location.pathname,
+        landingUrl: window.location.href,
+        referrer: document.referrer || '(direct)',
+        channel: 'direct_or_unknown',
+        capturedAt: new Date().toISOString(),
+      };
+
+  if (isFreshCapture) {
+    persistAttribution(attribution);
+  }
+
+  pushToDataLayer({
+    event: 'campaign_attribution',
+    channel: attribution.channel,
     utm_source: attribution.utm_source,
     utm_medium: attribution.utm_medium,
     utm_campaign: attribution.utm_campaign,
@@ -82,36 +168,9 @@ function sendGtagEvent(attribution: CampaignAttribution) {
     utm_term: attribution.utm_term,
     fbclid: attribution.fbclid,
     landing_path: attribution.landingPath,
-  });
-}
-
-/**
- * Captura UTM/fbclid de la URL (p. ej. Instagram link in bio),
- * los guarda en session y los envía a GTM + GA4.
- */
-export function trackCampaignAttribution() {
-  const fromQuery = readQueryAttribution();
-  const stored = readStoredAttribution();
-
-  const attribution: CampaignAttribution = hasAttribution(fromQuery)
-    ? {
-        ...fromQuery,
-        landingPath: `${window.location.pathname}${window.location.search}`,
-        capturedAt: new Date().toISOString(),
-      }
-    : stored ?? {
-        landingPath: window.location.pathname,
-        capturedAt: new Date().toISOString(),
-      };
-
-  if (hasAttribution(fromQuery)) {
-    persistAttribution(attribution);
-  }
-
-  pushToDataLayer({
-    event: 'campaign_attribution',
-    ...attribution,
+    landing_url: attribution.landingUrl,
+    referrer: attribution.referrer,
   });
 
-  sendGtagEvent(attribution);
+  sendGtagAttribution(attribution, isFreshCapture);
 }
