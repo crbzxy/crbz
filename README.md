@@ -1,6 +1,6 @@
 # CRBZ
 
-Sitio minimalista con Vite, React y una llama 3D en Three.js.
+Sitio mínimo con Vite, React y Tailwind.
 
 ## Desarrollo
 
@@ -15,3 +15,7 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Netlify
+
+`netlify.toml` publica `dist` con `npm run build` (Node 20).
